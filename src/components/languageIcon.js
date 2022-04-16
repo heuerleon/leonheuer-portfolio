@@ -1,8 +1,8 @@
 import * as React from "react";
 
-const LanguageIcon = () => {
+const LanguageIcon = (props) => {
     return (
-        <img src={this.props.icon.image} alt={this.props.icon.title + "icon"} title={this.props.icon.title} />
+        <img src={props.icon.image} alt={props.icon.title + "icon"} title={props.icon.title} />
     )
 };
 
