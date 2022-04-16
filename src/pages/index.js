@@ -252,7 +252,8 @@ let contact_email = '';
 let contact_name = '';
 let contact_message = '';
 
-function sendMessage() {
+function sendMessage(event) {
+  event.preventDefault();
   send_attempted = true;
   all_fields_filled = (contact_subject !== '') && (contact_email !== '') && (contact_name !== '') && (contact_message !== '');
   if (all_fields_filled) {
@@ -468,7 +469,7 @@ const IndexPage = () => {
                       ))}
                       */}
                     </div>
-                    <a href={project.source} className="featured-source" target="_blank" rel="noreferrer" title="View on GitHub"><i className="fab fa-github"></i></a>
+                    <a href={project.source} className="featured-source" target="_blank" rel="noreferrer" title="View on GitHub" aria-label="source"><i className="fab fa-github"></i></a>
                   </div>
                 </div>
               </div>
@@ -485,7 +486,7 @@ const IndexPage = () => {
               <div className="filters">
                 Filters:
                 <div className="dropdown">
-                  <span className="dropdown-title" onClick={() => (showSortDropdown = !showSortDropdown)}>Sort by</span>
+                  <button className="dropdown-title" onClick={() => (showSortDropdown = !showSortDropdown)}>Sort by</button>
                   <ul className={`dropdown-list ${showSortDropdown ? "dropdown-visible" : ""}`}>
                     <li className={sortFilter === 0 ? "selected" : ""} onClick={() => setShowSortDropdown(0)}>Default</li>
                     <li className={sortFilter === 1 ? "selected" : ""} onClick={() => setShowSortDropdown(1)}>A to Z</li>
@@ -512,7 +513,7 @@ const IndexPage = () => {
                       ))}
                       */}
                     </div>
-                    <a href={project.source} className="box-source" target="_blank" rel="noreferrer" title="View on GitHub"><i className="fab fa-github"></i></a>
+                    <a href={project.source} className="box-source" target="_blank" rel="noreferrer" title="View on GitHub" aria-label="source"><i className="fab fa-github"></i></a>
                   </div>
                 </div>
               </div>
@@ -582,7 +583,7 @@ const IndexPage = () => {
             <div className="column-left">
               <div className="h-captcha" data-sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"></div>
               <div className="button-container">
-                <span className="btn-primary" onClick={() => sendMessage()}>Send message</span>
+                <button className="btn-primary" onClick={sendMessage}>Send message</button>
               </div>
             </div>
           </div>
