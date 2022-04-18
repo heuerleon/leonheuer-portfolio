@@ -1,40 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-let showMobileNav = false;
-let navBarFixed = false;
-let scrolled = false;
-let scrollBefore = 0;
-
-function toggleMobileNav(event) {
-  event.preventDefault();
-  showMobileNav = !showMobileNav;
-}
 
 const Nav = () => {
   useEffect(() => {
     scrollBefore = window.scrollY;
-    setInterval(handleScroll, 20);
+    setInterval(handleScroll, 10);
   });
 
+  const [showMobileNav, setShowMobileNav] = useState(false);
+  const [navBarFixed, setNavBarFixed] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  let scrollBefore = 0;
+  let shiftedDownBefore = false;
+
   function handleScroll() {
-    if (scrollBefore !== window.scrollY) {
-      if (window.scrollY < 1) {
-        scrolled = false;
-        navBarFixed = false;
-      } else {
-        navBarFixed = scrollBefore > window.scrollY;
-        scrolled = !navBarFixed;
+    if (window.scrollY == 0) {
+      setScrolled(false);
+      setNavBarFixed(false);
+      shiftedDownBefore = false;
+    } else if (scrollBefore !== window.scrollY) {
+      let scrolledUp = scrollBefore > window.scrollY;
+      if (navBarFixed != scrolledUp) {
+        setNavBarFixed(scrolledUp);
+        shiftedDownBefore = scrolledUp;
       }
-      scrollBefore = window.scrollY;
+      if (scrolled == scrolledUp && shiftedDownBefore) {
+        setScrolled(!scrolledUp);
+        shiftedDownBefore = scrolledUp;
+      }
     }
+
+    scrollBefore = window.scrollY;
   }
-	
+
+  function toggleMobileNav(event) {
+    event.preventDefault();
+    setShowMobileNav(it => !it);
+  }
+
   return (
-    <nav
-      className={`alt-section-dark ${scrolled ? "nav-default" : ""} ${
-        navBarFixed ? "nav-fixed" : ""
-      }`}
-    >
+    <nav className={`alt-section-dark ${scrolled ? "nav-default" : ""} ${navBarFixed ? "nav-fixed" : ""}`}>
       <div className="nav-inner">
         <h4 className="style-headline">leonheuer</h4>
         <ul className="nav-links">
