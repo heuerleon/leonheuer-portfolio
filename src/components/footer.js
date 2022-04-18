@@ -56,7 +56,7 @@ const Footer = () => {
               <a href="https://icons8.com/" target="_blank" rel="noreferrer">
                 ICONS8
               </a>{" "}
-              and
+              and{" "}
               <a
                 href="https://www.vectorlogo.zone/"
                 target="_blank"

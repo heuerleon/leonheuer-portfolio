@@ -220,7 +220,8 @@ const IndexPage = () => {
       contactSubject !== "" &&
       contactEmail !== "" &&
       contactName !== "" &&
-      contactMessage !== "";
+      contactMessage !== "" &&
+      captchaSuccess;
 
     if (all_fields_filled) {
       let request = new XMLHttpRequest();
@@ -253,6 +254,12 @@ const IndexPage = () => {
       });
       request.send(body);
     }
+  }
+
+  const [captchaSuccess, setCaptchaSuccess] = useState(false);
+
+  function setSuccess() {
+    setCaptchaSuccess(true);
   }
 
   function isValidEmail(email) {
@@ -471,7 +478,9 @@ const IndexPage = () => {
               </div>
               {aboutMeTabs.map((aboutMeItem) => (
                 <div
-                  className={`tab-content ${tabIndex === aboutMeItem.index ? "tab-visible" : ""}`}
+                  className={`tab-content ${
+                    tabIndex === aboutMeItem.index ? "tab-visible" : ""
+                  }`}
                 >
                   <img
                     src={`${aboutMeItem.image}`}
@@ -523,7 +532,9 @@ const IndexPage = () => {
             <div className="row padding-row x-axis-space-between y-axis-stretched">
               <div className="column">
                 <div
-                  className={`featured ${project.id % 2 === 1 ? "featured-right" : ""}`}
+                  className={`featured ${
+                    project.id % 2 === 1 ? "featured-right" : ""
+                  }`}
                 >
                   <div className="image-wrapper">
                     <img
@@ -566,14 +577,13 @@ const IndexPage = () => {
             <div className="column-left">
               <h1>More Projects</h1>
               <div className="dropdown">
-                <button
-                  className="dropdown-title"
-                  onClick={toggleSortDropdown}
-                >
+                <button className="dropdown-title" onClick={toggleSortDropdown}>
                   {sortTitle}
                 </button>
                 <ul
-                  className={`dropdown-list ${showSortDropdown ? "dropdown-visible" : ""}`}
+                  className={`dropdown-list ${
+                    showSortDropdown ? "dropdown-visible" : ""
+                  }`}
                 >
                   <li
                     className={sortFilter === 0 ? "selected" : ""}
@@ -648,43 +658,36 @@ const IndexPage = () => {
                   type="text"
                   placeholder="Subject"
                   onChange={handleSubjectChange}
-                  className={!contactSubject && sendAttempted ? "empty-input" : ""}
+                  className={
+                    !contactSubject && sendAttempted ? "empty-input" : ""
+                  }
                 />
-                <span className={`error-message light ${contactSubject || !sendAttempted ? "hidden" : ""}`}>
-                  Please enter a subject.
-                </span>
-                
+
                 <input
                   type="text"
                   placeholder="Your email address"
                   onChange={handleEmailChange}
-                  className={`half-input ${!contactEmail && sendAttempted ? "empty-input" : ""}`}
+                  className={`half-input ${
+                    (!contactEmail && sendAttempted) || (!isValidEmail(contactEmail) && sendAttempted) ? "empty-input" : ""
+                  }`}
                 />
-                <span className={`error-message light ${contactEmail || !sendAttempted ? "hidden" : ""}`}>
-                  Please enter your email address.
-                </span>
-                <span className={`error-message light ${!contactEmail || isValidEmail(contactEmail) || !sendAttempted ? "hidden" : "" }`}>
-                  Please enter a valid email address.
-                </span>
 
                 <input
                   type="text"
                   placeholder="Your name"
                   onChange={handleNameChange}
-                  className={`half-input ${!contactName && sendAttempted ? "empty-input" : ""}`}
+                  className={`half-input ${
+                    !contactName && sendAttempted ? "empty-input" : ""
+                  }`}
                 />
-                <span className={`error-message light ${contactName || !sendAttempted ? "hidden" : ""}`}>
-                  Please enter your name.
-                </span>
 
                 <textarea
                   placeholder="Enter message"
                   onChange={handleMessageChange}
-                  className={!contactMessage && sendAttempted ? "empty-input" : ""}
+                  className={
+                    !contactMessage && sendAttempted ? "empty-input" : ""
+                  }
                 ></textarea>
-                <span className={`error-message light ${contactMessage || !sendAttempted ? "hidden" : ""}`}>
-                  Please enter a message.
-                </span>
               </div>
             </div>
             <div className="column-left col-3 col-alt-padding">
@@ -723,6 +726,7 @@ const IndexPage = () => {
               <div
                 className="h-captcha"
                 data-sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
+                data-callback="setSuccess"
               ></div>
               <div className="button-container">
                 <button className="btn-primary" onClick={sendMessage}>

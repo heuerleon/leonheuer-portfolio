@@ -318,6 +318,17 @@ b {
   font-size: .8em;
 }
 
+.input-wrapper {
+  width: 100%;
+  position: relative;
+
+  span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
 input,
 textarea {
   font: inherit;
@@ -336,6 +347,7 @@ textarea {
   outline: 0 solid transparent;
   box-shadow: var(--shadow-light);
   margin: 10px 0;
+  position: relative;
 
   &:hover {
     opacity: 1;
@@ -344,6 +356,12 @@ textarea {
   &:focus {
     opacity: 1;
     outline: 2px solid var(--accent-darker);
+  }
+
+  span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
 
@@ -361,6 +379,10 @@ textarea {
   height: 15em;
   max-height: 30em;
   transition: all var(--trans-default), height 0ms linear;
+}
+
+.empty-input {
+  color: red;
 }
 
 .column-starter {
