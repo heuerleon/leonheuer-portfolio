@@ -176,71 +176,6 @@ let projects = [
   },
 ];
 
-let showSortDropdown = false;
-let sortFilter = 0;
-
-function setShowSortDropdown(event, index) {
-  event.preventDefault();
-  sortFilter = index;
-  showSortDropdown = false;
-  switch (index) {
-    case 0: {
-      sortProjectsDefault();
-      break;
-    }
-    case 1: {
-      sortProjectsAZ();
-      break;
-    }
-    case 2: {
-      sortProjectsZA();
-      break;
-    }
-    default: {
-      sortProjectsDefault();
-    }
-  }
-}
-
-function toggleSortDropdown(event) {
-  event.preventDefault();
-  showSortDropdown = !showSortDropdown;
-}
-
-function sortProjectsAZ() {
-  const titles = [];
-  projects.forEach((element) => {
-    titles.push(element.title);
-  });
-  titles.sort();
-  updateProjects(titles);
-}
-
-function sortProjectsZA() {
-  const titles = [];
-  projects.forEach((element) => {
-    titles.push(element.title);
-  });
-  titles.sort();
-  titles.reverse();
-  updateProjects(titles);
-}
-
-function sortProjectsDefault() {
-  updateProjects(projectsDefault);
-}
-
-function updateProjects(newOrder) {
-  const newProjects = [];
-  for (let i = 0; i < projects.length; i++) {
-    newProjects.push({});
-  }
-  projects.forEach((element) => {
-    newProjects[newOrder.indexOf(element.title)] = element;
-  });
-  projects = newProjects;
-}
-
 // markup
 const IndexPage = () => {
   useEffect(() => {
@@ -253,7 +188,7 @@ const IndexPage = () => {
     };
   });
 
-  let send_attempted = false;
+  const [sendAttempted, setSendAttempted] = useState(false);
   let all_fields_filled = false;
 
   const [contactSubject, setContactSubject] = useState("");
@@ -281,7 +216,7 @@ const IndexPage = () => {
 
   function sendMessage(event) {
     event.preventDefault();
-    send_attempted = true;
+    setSendAttempted(true);
 		
     all_fields_filled =
       contactSubject !== "" &&
@@ -343,14 +278,80 @@ const IndexPage = () => {
     }
   }
 
-	let tabIndex = 1;
+	const [tabIndex, setTabIndex] = useState(1);
 	
 	function handleTabChange(event, index) {
 		event.preventDefault();
 		if (index <= 2) {
-			tabIndex = index;
+			setTabIndex(index);
 		}
 	}
+
+
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [sortFilter, setSortFilter] = useState(0);
+  const [sortTitle, setSortTitle] = useState("Sort by (Default)");
+
+  function sortProjects(event, index) {
+    event.preventDefault();
+    setSortFilter(index);
+    setShowSortDropdown(false);
+    switch (index) {
+      case 1: {
+        sortProjectsAZ();
+        setSortTitle("Sort by (A to Z)")
+        break;
+      }
+      case 2: {
+        sortProjectsZA();
+        setSortTitle("Sort by (Z to A)")
+        break;
+      }
+      default: {
+        sortProjectsDefault();
+        setSortTitle("Sort by (Default)")
+      }
+    }
+  }
+  
+  function toggleSortDropdown(event) {
+    event.preventDefault();
+    setShowSortDropdown(it => !it);
+  }
+  
+  function sortProjectsAZ() {
+    const titles = [];
+    projects.forEach((element) => {
+      titles.push(element.title);
+    });
+    titles.sort();
+    updateProjects(titles);
+  }
+  
+  function sortProjectsZA() {
+    const titles = [];
+    projects.forEach((element) => {
+      titles.push(element.title);
+    });
+    titles.sort();
+    titles.reverse();
+    updateProjects(titles);
+  }
+  
+  function sortProjectsDefault() {
+    updateProjects(projectsDefault);
+  }
+  
+  function updateProjects(newOrder) {
+    const newProjects = [];
+    for (let i = 0; i < projects.length; i++) {
+      newProjects.push({});
+    }
+    projects.forEach((element) => {
+      newProjects[newOrder.indexOf(element.title)] = element;
+    });
+    projects = newProjects;
+  }
 
   return (
     <main>
@@ -361,7 +362,7 @@ const IndexPage = () => {
         ></script>
         <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
       </Helmet>
-      <title>Home Page</title>
+      <title>Leon Heuers Portfolio</title>
       <Nav />
       <section
         className="alt-section-dark full-height y-axis-centered"
@@ -479,9 +480,7 @@ const IndexPage = () => {
               </div>
               {aboutMeTabs.map((aboutMeItem) => (
                 <div
-                  className={`tab-content ${
-                    tabIndex === aboutMeItem.index ? "tab-visible" : ""
-                  }`}
+                  className={`tab-content ${tabIndex === aboutMeItem.index ? "tab-visible" : ""}`}
                 >
                   <img
                     src={`${aboutMeItem.image}`}
@@ -533,9 +532,7 @@ const IndexPage = () => {
             <div className="row padding-row x-axis-space-between y-axis-stretched">
               <div className="column">
                 <div
-                  className={`featured ${
-                    project.id % 2 === 1 ? "featured-right" : ""
-                  }`}
+                  className={`featured ${project.id % 2 === 1 ? "featured-right" : ""}`}
                 >
                   <div className="image-wrapper">
                     <img
@@ -577,40 +574,35 @@ const IndexPage = () => {
           <div className="row padding-row">
             <div className="column-left">
               <h1>More Projects</h1>
-              <div className="filters">
-                Filters:
-                <div className="dropdown">
-                  <button
-                    className="dropdown-title"
-                    onClick={toggleSortDropdown}
+              <div className="dropdown">
+                <button
+                  className="dropdown-title"
+                  onClick={toggleSortDropdown}
+                >
+                  {sortTitle}
+                </button>
+                <ul
+                  className={`dropdown-list ${showSortDropdown ? "dropdown-visible" : ""}`}
+                >
+                  <li
+                    className={sortFilter === 0 ? "selected" : ""}
+                    onClick={(event) => sortProjects(event, 0)}
                   >
-                    Sort by
-                  </button>
-                  <ul
-                    className={`dropdown-list ${
-                      showSortDropdown ? "dropdown-visible" : ""
-                    }`}
+                    Default
+                  </li>
+                  <li
+                    className={sortFilter === 1 ? "selected" : ""}
+                    onClick={(event) => sortProjects(event, 1)}
                   >
-                    <li
-                      className={sortFilter === 0 ? "selected" : ""}
-                      onClick={(event) => setShowSortDropdown(event, 0)}
-                    >
-                      Default
-                    </li>
-                    <li
-                      className={sortFilter === 1 ? "selected" : ""}
-                      onClick={(event) => setShowSortDropdown(event, 1)}
-                    >
-                      A to Z
-                    </li>
-                    <li
-                      className={sortFilter === 2 ? "selected" : ""}
-                      onClick={(event) => setShowSortDropdown(event, 2)}
-                    >
-                      Z to A
-                    </li>
-                  </ul>
-                </div>
+                    A to Z
+                  </li>
+                  <li
+                    className={sortFilter === 2 ? "selected" : ""}
+                    onClick={(event) => sortProjects(event, 2)}
+                  >
+                    Z to A
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -661,88 +653,47 @@ const IndexPage = () => {
           <div className="row">
             <div className="column-left col-3-double">
               <div className="row row-slim">
-                <div className="column-left">
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    onChange={handleSubjectChange}
-                    className={
-                      !contactSubject && send_attempted ? "empty-input" : ""
-                    }
-                  />
-                  <span
-                    className={`error-message light ${
-                      contactSubject || !send_attempted ? "hidden" : ""
-                    }`}
-                  >
-                    Please enter a subject.
-                  </span>
-                </div>
-              </div>
-              <div className="row row-slim">
-                <div className="column-left col-2">
-                  <input
-                    type="text"
-                    placeholder="Your email address"
-                    onChange={handleEmailChange}
-                    className={
-                      !contactEmail && send_attempted ? "empty-input" : ""
-                    }
-                  />
-                  <span
-                    className={`error-message light ${
-                      contactEmail || !send_attempted ? "hidden" : ""
-                    }`}
-                  >
-                    Please enter your email address.
-                  </span>
-                  <span
-                    className={`error-message light ${
-                      !contactEmail ||
-                      isValidEmail(contactEmail) ||
-                      !send_attempted
-                        ? "hidden"
-                        : ""
-                    }`}
-                  >
-                    Please enter a valid email address.
-                  </span>
-                </div>
-                <div className="column-left col-2">
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    onChange={handleNameChange}
-                    className={
-                      !contactName && send_attempted ? "empty-input" : ""
-                    }
-                  />
-                  <span
-                    className={`error-message light ${
-                      contactName || !send_attempted ? "hidden" : ""
-                    }`}
-                  >
-                    Please enter your name.
-                  </span>
-                </div>
-              </div>
-              <div className="row row-slim">
-                <div className="column-left">
-                  <textarea
-                    placeholder="Enter message"
-                    onChange={handleMessageChange}
-                    className={
-                      !contactMessage && send_attempted ? "empty-input" : ""
-                    }
-                  ></textarea>
-                  <span
-                    className={`error-message light ${
-                      contactMessage || !send_attempted ? "hidden" : ""
-                    }`}
-                  >
-                    Please enter a message.
-                  </span>
-                </div>
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  onChange={handleSubjectChange}
+                  className={!contactSubject && sendAttempted ? "empty-input" : ""}
+                />
+                <span className={`error-message light ${contactSubject || !sendAttempted ? "hidden" : ""}`}>
+                  Please enter a subject.
+                </span>
+                
+                <input
+                  type="text"
+                  placeholder="Your email address"
+                  onChange={handleEmailChange}
+                  className={`half-input ${!contactEmail && sendAttempted ? "empty-input" : ""}`}
+                />
+                <span className={`error-message light ${contactEmail || !sendAttempted ? "hidden" : ""}`}>
+                  Please enter your email address.
+                </span>
+                <span className={`error-message light ${!contactEmail || isValidEmail(contactEmail) || !sendAttempted ? "hidden" : "" }`}>
+                  Please enter a valid email address.
+                </span>
+
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  onChange={handleNameChange}
+                  className={`half-input ${!contactName && sendAttempted ? "empty-input" : ""}`}
+                />
+                <span className={`error-message light ${contactName || !sendAttempted ? "hidden" : ""}`}>
+                  Please enter your name.
+                </span>
+
+                <textarea
+                  placeholder="Enter message"
+                  onChange={handleMessageChange}
+                  className={!contactMessage && sendAttempted ? "empty-input" : ""}
+                ></textarea>
+                <span className={`error-message light ${contactMessage || !sendAttempted ? "hidden" : ""}`}>
+                  Please enter a message.
+                </span>
               </div>
             </div>
             <div className="column-left col-3 col-alt-padding">

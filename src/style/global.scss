@@ -334,6 +334,7 @@ textarea {
   opacity: .7;
   outline: 0 solid transparent;
   box-shadow: var(--shadow-light);
+  margin: 10px 0;
 
   &:hover {
     opacity: 1;
@@ -342,6 +343,14 @@ textarea {
   &:focus {
     opacity: 1;
     outline: 2px solid var(--accent-darker);
+  }
+}
+
+.half-input {
+  width: calc(50% - 5px);
+  margin-right: 10px;
+  &:last-of-type {
+    margin-right: 0;
   }
 }
 
