@@ -217,6 +217,7 @@ a>*,
 
 button {
   border: none;
+  font: inherit;
 }
 
 h1 {
@@ -319,7 +320,7 @@ b {
 
 input,
 textarea {
-  font-family: inherit;
+  font: inherit;
   font-size: .8em;
   font-weight: 500;
   padding: 15px 25px;

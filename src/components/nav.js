@@ -14,17 +14,17 @@ const Nav = () => {
   let shiftedDownBefore = false;
 
   function handleScroll() {
-    if (window.scrollY == 0) {
+    if (window.scrollY === 0) {
       setScrolled(false);
       setNavBarFixed(false);
       shiftedDownBefore = false;
     } else if (scrollBefore !== window.scrollY) {
       let scrolledUp = scrollBefore > window.scrollY;
-      if (navBarFixed != scrolledUp) {
+      if (navBarFixed !== scrolledUp) {
         setNavBarFixed(scrolledUp);
         shiftedDownBefore = scrolledUp;
       }
-      if (scrolled == scrolledUp && shiftedDownBefore) {
+      if (scrolled === scrolledUp && shiftedDownBefore) {
         setScrolled(!scrolledUp);
         shiftedDownBefore = scrolledUp;
       }

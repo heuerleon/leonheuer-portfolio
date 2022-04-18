@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Helmet from "react-helmet";
 import TypeIt from "typeit-react";
-import Nav from "../components/nav.js";
-import Footer from "../components/footer.js";
+import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
 import "../style/global.scss";
 
@@ -354,16 +352,7 @@ const IndexPage = () => {
   }
 
   return (
-    <main>
-      <Helmet>
-        <script
-          src="https://kit.fontawesome.com/a01c807fba.js"
-          crossorigin="anonymous"
-        ></script>
-        <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-      </Helmet>
-      <title>Leon Heuers Portfolio</title>
-      <Nav />
+    <Layout>
       <section
         className="alt-section-dark full-height y-axis-centered"
         id="top"
@@ -384,7 +373,9 @@ const IndexPage = () => {
                       "Computer hardware hobbyist",
                     ],
                     loop: true,
-                    speed: 100,
+                    speed: 50,
+                    deleteSpeed: 25,
+                    nextStringDelay: [1500, 100],
                     lifeLike: false,
                     cursor: false,
                     breakLines: false,
@@ -742,8 +733,7 @@ const IndexPage = () => {
           </div>
         </div>
       </section>
-      <Footer />
-    </main>
+    </Layout>
   );
 };
 
