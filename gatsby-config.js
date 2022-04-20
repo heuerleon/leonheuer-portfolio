@@ -1,7 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `leonheuer-portfolio`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://leonheuer.de`,
   },
-  plugins: ["gatsby-plugin-sass"]
+  plugins: [
+    "gatsby-plugin-sass"
+  ],
 };

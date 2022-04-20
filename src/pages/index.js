@@ -12,8 +12,8 @@ const projectCats = [
   },
   {
     image: "./images/desktop.png",
-    h2: "Desktop Applications",
-    p: "User-friendly and modern desktop applications",
+    h2: "Server-sided Applications",
+    p: "TODO",
   },
   {
     image: "./images/web.png",
@@ -27,32 +27,13 @@ const projectCats = [
   },
 ];
 
-const aboutMeTabs = [
-  {
-    index: 0,
-    image: "./images/approach.png",
-    title: "How I got into coding",
-    p:
-      "When I was 10 years old, I found a book about Small Basic in my father's bookshelf. It raised my " +
-      "interest in programming and tought me the very basics of programming logic. Shortly after that, " +
-      "I created my first website and learned the basics of modern web design. Three years ago, I found out " +
-      "I could create my own gameplay extensions for the video game Minecraft I was playing, so I started " +
-      "learning Java, which has become my favourite programming language and is probably the one I have the most " +
-      "experience with.",
-  },
-  {
-    index: 1,
-    image: "./images/experience.png",
-    title: "What I've been working on recently",
-    p: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-  },
-  {
-    index: 2,
-    image: "./images/mindset.png",
-    title: "What I'm interested in",
-    p: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-  },
-];
+const aboutMe =
+  "When I was 10 years old, I found a book about Small Basic in my father's bookshelf. It raised my " +
+  "interest in programming and tought me the very basics of programming logic. Shortly after that, " +
+  "I created my first website and learned the basics of modern web design. Three years ago, I found out " +
+  "I could create my own gameplay extensions for the video game Minecraft I was playing, so I started " +
+  "learning Java, which has become my favourite programming language and the one I am most " +
+  "experienced in.";
 
 let featured = [
   {
@@ -177,13 +158,7 @@ let projects = [
 // markup
 const IndexPage = () => {
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    scrollBefore = window.scrollY;
     setInterval(handleScroll, 20);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   });
 
   const [sendAttempted, setSendAttempted] = useState(false);
@@ -215,6 +190,7 @@ const IndexPage = () => {
   function sendMessage(event) {
     event.preventDefault();
     setSendAttempted(true);
+    setCaptchaSuccess(true);
 		
     all_fields_filled =
       contactSubject !== "" &&
@@ -234,7 +210,7 @@ const IndexPage = () => {
       request.onload = () => console.log(request.responseText);
       let body = JSON.stringify({
         content:
-          "<@320518030243135490> someone has used the contact formula on your website https://leonheuer.de",
+          "<@320518030243135490> someone has used the contact form on your website https://leonheuer.de",
         allowed_mentions: {
           parse: ["users"],
         },
@@ -258,10 +234,6 @@ const IndexPage = () => {
 
   const [captchaSuccess, setCaptchaSuccess] = useState(false);
 
-  function setSuccess() {
-    setCaptchaSuccess(true);
-  }
-
   function isValidEmail(email) {
     const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
     return regex.test(String(email).toLowerCase());
@@ -274,7 +246,7 @@ const IndexPage = () => {
     backgroundPosition: topParralax,
   };
 
-  let scrollBefore = 0;
+  let scrollBefore = window.scrollY;
 
   function handleScroll() {
     if (scrollBefore !== window.scrollY) {
@@ -282,15 +254,6 @@ const IndexPage = () => {
       scrollBefore = window.scrollY;
     }
   }
-
-	const [tabIndex, setTabIndex] = useState(1);
-	
-	function handleTabChange(event, index) {
-		event.preventDefault();
-		if (index <= 2) {
-			setTabIndex(index);
-		}
-	}
 
 
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -394,7 +357,7 @@ const IndexPage = () => {
               <h1>Leon Heuer</h1>
               <p className="p-no-margin">
                 My name is Leon Heuer and I welcome you to my personal website.
-                I am a 16 years old developer from Germany.
+                I am a 17 years old software developer from Germany.
               </p>
               <div className="social-media-container">
                 <a
@@ -431,15 +394,6 @@ const IndexPage = () => {
                 </a>
               </div>
             </div>
-            <div className="column-centered col-2">
-              <div id="portrait">
-                <img
-                  src={`./images/leon-heuer-min.jpg`}
-                  alt="Leon Heuer"
-                  className="rounded-image"
-                />
-              </div>
-            </div>
           </div>
         </div>
         <a href="#about" className="scroll-down" aria-label="scroll-down">
@@ -449,48 +403,17 @@ const IndexPage = () => {
 
       <section className="padding-section" id="about">
         <div className="container">
-          <div className="row padding-row x-axis-centered y-axis-centered">
-            <div className="column-centered">
+          <div className="row padding-row y-axis-centered nowrap">
+            <div className="column-min">
               <h1>About Me</h1>
+              <p>{aboutMe}</p>
             </div>
-          </div>
-          <div className="row padding-row x-axis-space-between y-axis-stretched">
-            <div className="tab-control">
-              <div className="tab-header">
-                <button
-                  className={`tab ${tabIndex === 0 ? "selected-tab" : ""}`}
-                  onClick={(event) => handleTabChange(event, 0)}
-                >
-                  Background story
-                </button>
-                <button
-                  className={`tab ${tabIndex === 1 ? "selected-tab" : ""}`}
-                  onClick={(event) => handleTabChange(event, 1)}
-                >
-                  Working on...
-                </button>
-                <button
-                  className={`tab ${tabIndex === 2 ? "selected-tab" : ""}`}
-                  onClick={(event) => handleTabChange(event, 2)}
-                >
-                  Interested in...
-                </button>
-              </div>
-              {aboutMeTabs.map((aboutMeItem) => (
-                <div
-                  className={`tab-content ${
-                    tabIndex === aboutMeItem.index ? "tab-visible" : ""
-                  }`}
-                >
-                  <img
-                    src={`${aboutMeItem.image}`}
-                    alt={aboutMeItem.title + "Icon"}
-                    className="small-img"
-                  />
-                  <h3>{aboutMeItem.title}</h3>
-                  <p>{aboutMeItem.p}</p>
-                </div>
-              ))}
+            <div className="column-min">
+              <img
+                src={`./images/leon-heuer-2-min.jpg`}
+                id="about-me-img"
+                alt="Leon Heuer"
+              ></img>
             </div>
           </div>
         </div>
@@ -498,7 +421,7 @@ const IndexPage = () => {
 
       <section className="padding-section alt-section" id="services">
         <div className="container">
-          <div className="row padding-row">
+          <div className="row">
             <div className="column-centered">
               <h1>What I do</h1>
             </div>
@@ -523,7 +446,7 @@ const IndexPage = () => {
 
       <section className="padding-section" id="featured">
         <div className="container">
-          <div className="row padding-row">
+          <div className="row">
             <div className="column-centered">
               <h1>Featured Projects</h1>
             </div>
@@ -573,7 +496,7 @@ const IndexPage = () => {
 
       <section className="padding-section alt-section" id="projects">
         <div className="container">
-          <div className="row padding-row">
+          <div className="row">
             <div className="column-left">
               <h1>More Projects</h1>
               <div className="dropdown">
@@ -585,23 +508,29 @@ const IndexPage = () => {
                     showSortDropdown ? "dropdown-visible" : ""
                   }`}
                 >
-                  <li
-                    className={sortFilter === 0 ? "selected" : ""}
-                    onClick={(event) => sortProjects(event, 0)}
-                  >
-                    Default
+                  <li>
+                    <button
+                      className={sortFilter === 0 ? "selected" : ""}
+                      onClick={(event) => sortProjects(event, 0)}
+                    >
+                      Default
+                    </button>
                   </li>
-                  <li
-                    className={sortFilter === 1 ? "selected" : ""}
-                    onClick={(event) => sortProjects(event, 1)}
-                  >
-                    A to Z
+                  <li>
+                    <button
+                      className={sortFilter === 1 ? "selected" : ""}
+                      onClick={(event) => sortProjects(event, 1)}
+                    >
+                      A to Z
+                    </button>
                   </li>
-                  <li
-                    className={sortFilter === 2 ? "selected" : ""}
-                    onClick={(event) => sortProjects(event, 2)}
-                  >
-                    Z to A
+                  <li>
+                    <button
+                      className={sortFilter === 2 ? "selected" : ""}
+                      onClick={(event) => sortProjects(event, 2)}
+                    >
+                      Z to A
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -646,7 +575,7 @@ const IndexPage = () => {
 
       <section className="padding-section" id="contact">
         <div className="container">
-          <div className="row padding-row">
+          <div className="row">
             <div className="column-left">
               <h1>Contact Me</h1>
             </div>
@@ -668,7 +597,10 @@ const IndexPage = () => {
                   placeholder="Your email address"
                   onChange={handleEmailChange}
                   className={`half-input ${
-                    (!contactEmail && sendAttempted) || (!isValidEmail(contactEmail) && sendAttempted) ? "empty-input" : ""
+                    (!contactEmail && sendAttempted) ||
+                    (!isValidEmail(contactEmail) && sendAttempted)
+                      ? "empty-input"
+                      : ""
                   }`}
                 />
 
@@ -688,6 +620,18 @@ const IndexPage = () => {
                     !contactMessage && sendAttempted ? "empty-input" : ""
                   }
                 ></textarea>
+              </div>
+              <div className="row row-slim">
+                <div
+                  className="h-captcha"
+                  data-sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
+                  data-callback="setSuccess"
+                ></div>
+                <div className="button-container">
+                  <button className="btn-primary" onClick={sendMessage}>
+                    Send message
+                  </button>
+                </div>
               </div>
             </div>
             <div className="column-left col-3 col-alt-padding">
@@ -718,20 +662,6 @@ const IndexPage = () => {
                   </a>
                   <span className="light">Send me a direct message</span>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="row padding-row">
-            <div className="column-left">
-              <div
-                className="h-captcha"
-                data-sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
-                data-callback="setSuccess"
-              ></div>
-              <div className="button-container">
-                <button className="btn-primary" onClick={sendMessage}>
-                  Send message
-                </button>
               </div>
             </div>
           </div>
