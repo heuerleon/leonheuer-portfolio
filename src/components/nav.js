@@ -33,12 +33,15 @@ const Nav = () => {
   }
 
   function toggleMobileNav(event) {
-    event.preventDefault();
     setShowMobileNav(it => !it);
   }
 
   return (
-    <nav className={`alt-section-dark ${scrolled ? "nav-default" : ""} ${navBarFixed ? "nav-fixed" : ""}`}>
+    <nav
+      className={`alt-section-dark ${
+        scrolled && !showMobileNav ? "nav-default" : ""
+      } ${navBarFixed || showMobileNav ? "nav-fixed" : ""}`}
+    >
       <div className="nav-inner">
         <h4 className="style-headline">leonheuer</h4>
         <ul className="nav-links">
@@ -49,13 +52,13 @@ const Nav = () => {
             <a href="/#about">About Me</a>
           </li>
           <li>
+            <a href="/#services">Services</a>
+          </li>
+          <li>
             <a href="/#featured">Featured</a>
           </li>
           <li>
             <a href="/#projects">Projects</a>
-          </li>
-          <li>
-            <a href="/#services">Services</a>
           </li>
           <li>
             <a href="/#contact">Contact</a>
@@ -68,7 +71,8 @@ const Nav = () => {
           <ul
             className={`mobile-nav-links ${
               showMobileNav ? "mobile-nav-links-visible" : ""
-            } onClick={toggleMobileNav}`}
+            }`}
+            onClick={toggleMobileNav}
           >
             <li>
               <a href="/#top">Home</a>
@@ -77,13 +81,13 @@ const Nav = () => {
               <a href="/#about">About Me</a>
             </li>
             <li>
+              <a href="/#services">Services</a>
+            </li>
+            <li>
               <a href="/#featured">Featured</a>
             </li>
             <li>
               <a href="/#projects">Projects</a>
-            </li>
-            <li>
-              <a href="/#services">Services</a>
             </li>
             <li>
               <a href="/#contact">Contact</a>
