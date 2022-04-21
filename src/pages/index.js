@@ -159,7 +159,7 @@ let projects = [
 const IndexPage = () => {
   useEffect(() => {
     setInterval(handleScroll, 20);
-  });
+  }, []);
 
   const [sendAttempted, setSendAttempted] = useState(false);
   let all_fields_filled = false;
@@ -239,14 +239,17 @@ const IndexPage = () => {
     return regex.test(String(email).toLowerCase());
   }
 
-  const [topParralax, setTopParralax] = useState(
-    "center " + window.scrollY * 0.3 + "px"
-  );
+  const [topParralax, setTopParralax] = useState("center");
   let topSectionStyle = {
     backgroundPosition: topParralax,
   };
 
-  let scrollBefore = window.scrollY;
+  let scrollBefore = 0;
+  const isBrowser = typeof window !== "undefined";
+  if (isBrowser) {
+    scrollBefore = window.scrollY;
+    setTopParralax("center " + window.scrollY * 0.3 + "px");
+  }
 
   function handleScroll() {
     if (scrollBefore !== window.scrollY) {
