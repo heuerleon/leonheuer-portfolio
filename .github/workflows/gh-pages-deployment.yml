@@ -14,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.PAT }}
     - name: Use Node.js 16.x
       uses: actions/setup-node@v3
       with:
@@ -26,4 +24,7 @@ jobs:
         git config --global user.email "leon@heuer.ovh"
         git config --global user.name "GitHub Actions"
     - run: npm install
-    - run: npm run deploy
+    - name: Run deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      run: npm run deploy
