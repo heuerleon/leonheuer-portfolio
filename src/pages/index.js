@@ -477,7 +477,7 @@ const IndexPage = () => {
             <div className="column-left">
               <h1>More Projects</h1>
               <div className="dropdown">
-                <button className="dropdown-title" onClick={setShowSortDropdown(it => !it)}>
+                <button className="dropdown-title" onClick={() => setShowSortDropdown(it => !it)}>
                   {sortTitle}
                 </button>
                 <ul
@@ -605,7 +605,7 @@ const IndexPage = () => {
                   data-callback="setSuccess"
                 ></div>
                 <div className="button-container">
-                  <button className="btn-primary" onClick={sendMessage}>
+                  <button className="btn-primary" onClick={(event) => sendMessage(event)}>
                     Send message
                   </button>
                 </div>

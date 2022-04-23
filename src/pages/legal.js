@@ -4,13 +4,13 @@ import Layout from "../components/layout";
 const Legal = () => {
   return (
     <Layout>
-      <section class="padding-section alt-section-dark adjust-to-nav">
-        <div class="row">
-          <div class="column-centered">
+      <section className="padding-section alt-section-dark adjust-to-nav">
+        <div className="row">
+          <div className="column-centered">
             <h1>Legal notice</h1>
-            <p class="warning-message">
-              <i class="fas fa-info-circle"></i> Note that the content of this
-              site is only available in German as of now.
+            <p className="warning-message">
+              <i className="fas fa-info-circle"></i> Note that the content of
+              this site is only available in German as of now.
             </p>
             <p>
               <a href="/">Home</a> / <a href="/legal-notice">Legal-Notice</a>
@@ -19,10 +19,10 @@ const Legal = () => {
         </div>
       </section>
 
-      <section class="padding-section">
-        <div class="container">
-          <div class="row">
-            <div class="column-left">
+      <section className="padding-section">
+        <div className="container">
+          <div className="row">
+            <div className="column-left">
               <h1>Impressum</h1>
 
               <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>

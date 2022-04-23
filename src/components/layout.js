@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import Nav from "./nav"
 import Footer from "./footer"
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
   return (
     <main>
       <Helmet>
@@ -20,3 +20,5 @@ export default function Layout({ children }) {
     </main>
   )
 }
+
+export default Layout;
