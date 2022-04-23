@@ -20,7 +20,8 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - name: Configure Git identity
-      run: |-
+      run: |
+        git config credential.helper store
         git config --global user.email "leon@heuer.ovh"
         git config --global user.name "GitHub Actions"
     - run: npm install
