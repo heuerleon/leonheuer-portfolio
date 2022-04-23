@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import TypeIt from "typeit-react";
 import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
+import { navigate } from "gatsby";
 
 const projectCats = [
   {
@@ -155,7 +156,6 @@ const IndexPage = () => {
   const [contactMessage, setContactMessage] = useState("");
 
   function sendMessage(event) {
-    event.preventDefault();
     setSendAttempted(true);
     setCaptchaSuccess(true);
 
@@ -172,6 +172,15 @@ const IndexPage = () => {
         "POST",
         "https://discord.com/api/webhooks/963429237572923503/_z-rM1YtWwpNEasTPInC96a0ZlaQzl-UO1uWXg_XrTu_D-IY9NFgXdd0RhKUW9KOKl0A"
       );
+      request.onreadystatechange = () => {
+        if (request.readyState === 4) {
+          if (request.status >= 200 && request.status < 300) {
+            navigate("/contact-success/");
+          } else {
+            alert("Error processing your contact request. Please use another contact option.");
+          }
+        }
+      }
       request.setRequestHeader("Accept", "application/json");
       request.setRequestHeader("Content-Type", "application/json");
       request.onload = () => console.log(request.responseText);
@@ -196,6 +205,8 @@ const IndexPage = () => {
         ],
       });
       request.send(body);
+    } else {
+      alert(":(");
     }
   }
 
@@ -282,6 +293,10 @@ const IndexPage = () => {
       newProjects[newOrder.indexOf(element.title)] = element;
     });
     projects = newProjects;
+  }
+
+  function success() {
+    alert("success!");
   }
 
   return (
@@ -590,13 +605,6 @@ const IndexPage = () => {
           <div className="row row-reversed">
             <div className="column-left col-3 col-alt-padding">
               <div className="row nowrap y-axis-centered padding-row row-slim">
-                <i className="fas fa-map-marked-alt double-line-icon"></i>
-                <div className="column-left">
-                  <span className="bold">Bad Schwartau, Germany</span>
-                  <span className="light">Am Brahmberg 25, D-23611</span>
-                </div>
-              </div>
-              <div className="row nowrap y-axis-centered padding-row row-slim">
                 <i className="fas fa-envelope-open-text double-line-icon"></i>
                 <div className="column-left">
                   <span className="bold">leon(at)heuer.ovh</span>
@@ -604,17 +612,10 @@ const IndexPage = () => {
                 </div>
               </div>
               <div className="row nowrap y-axis-centered padding-row row-slim">
-                <i className="fab fa-linkedin double-line-icon"></i>
+                <i className="fab fa-discord double-line-icon"></i>
                 <div className="column-left">
-                  <a
-                    href="https://www.linkedin.com/in/leonheuer/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bold"
-                  >
-                    LinkedIn/leonheuer
-                  </a>
-                  <span className="light">Send me a direct message</span>
+                  <span className="bold">haku#7136</span>
+                  <span className="light">Add me on discord</span>
                 </div>
               </div>
             </div>
@@ -662,7 +663,7 @@ const IndexPage = () => {
                 <div
                   className="h-captcha"
                   data-sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
-                  data-callback="setSuccess"
+                  data-callback="success"
                 ></div>
                 <div className="button-container">
                   <button

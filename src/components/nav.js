@@ -58,22 +58,22 @@ const Nav = () => {
         <h4 className="style-headline"><a href="/">heuer.ovh</a></h4>
         <ul className="nav-links">
           <li>
-            <a href="/#top" target="_top">Home</a>
+            <a href="/#top">Home</a>
           </li>
           <li>
-            <a href="/#about" target="_top">About Me</a>
+            <a href="/#about">About Me</a>
           </li>
           <li>
-            <a href="/#what-i-do" target="_top">What I Do</a>
+            <a href="/#what-i-do">What I Do</a>
           </li>
           <li>
-            <a href="/#featured" target="_top">Featured</a>
+            <a href="/#featured">Featured</a>
           </li>
           <li>
-            <a href="/#projects" target="_top">Projects</a>
+            <a href="/#projects">Projects</a>
           </li>
           <li>
-            <a href="/#contact" target="_top">Contact</a>
+            <a href="/#contact">Contact</a>
           </li>
         </ul>
         <div className="mobile-nav">
@@ -87,22 +87,22 @@ const Nav = () => {
             onClick={() => setShowMobileNav(it => !it)}
           >
             <li>
-              <a href="/#top" target="_top">Home</a>
+              <a href="/#top">Home</a>
             </li>
             <li>
-              <a href="/#what-i-do" target="_top">About Me</a>
+              <a href="/#about">About Me</a>
             </li>
             <li>
-              <a href="/#services" target="_top">What I Do</a>
+              <a href="/#what-i-do">What I Do</a>
             </li>
             <li>
-              <a href="/#featured" target="_top">Featured</a>
+              <a href="/#featured">Featured</a>
             </li>
             <li>
-              <a href="/#projects" target="_top">Projects</a>
+              <a href="/#projects">Projects</a>
             </li>
             <li>
-              <a href="/#contact" target="_top">Contact</a>
+              <a href="/#contact">Contact</a>
             </li>
           </ul>
         </div>
