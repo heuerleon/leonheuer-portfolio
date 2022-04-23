@@ -608,7 +608,7 @@ textarea {
 
     &:hover {
       opacity: .8;
-      box-shadow: var(--default-shadow);
+      box-shadow: var(--shadow-light);
     }
   }
 }
@@ -624,6 +624,13 @@ textarea {
   margin-left: 5px;
   font-weight: 700;
   color: var(--main-color);
+}
+
+.simple-bg {
+  background-image: url('../../static/images/simple-bg.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #top {

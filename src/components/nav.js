@@ -32,19 +32,15 @@ const Nav = () => {
           direction = Direction.UP;
         }
 
-        if (direction === Direction.UP) {
-          if (!fixed) {
-            setInvisible(false);
-            setFixed(true);
-            wasFixedBefore.current = true;
-          }
+        if (direction === Direction.UP && !fixed) {
+          setInvisible(false);
+          setFixed(true);
+          wasFixedBefore.current = true;
         }
 
-        if (direction === Direction.DOWN) {
-          if (!invisible && wasFixedBefore.current) {
-            setFixed(false);
-            setInvisible(true);
-          }
+        if (direction === Direction.DOWN && !invisible && wasFixedBefore.current) {
+          setFixed(false);
+          setInvisible(true);
         }
       }
       
