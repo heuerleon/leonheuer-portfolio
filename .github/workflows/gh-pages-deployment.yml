@@ -1,0 +1,30 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Automatic GH Pages deployment
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        cache: 'npm'
+    - name: Configure Git identity
+      run: |
+        git config --global user.email "leon@heuer.ovh"
+        git config --global user.name "GitHub Actions"
+    - run: npm install
+    - name: Run deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      run: npm run deploy
