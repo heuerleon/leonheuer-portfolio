@@ -366,8 +366,15 @@ const IndexPage = () => {
 
       <section className="padding-section" id="about">
         <div className="container">
-          <div className="row padding-row y-axis-centered nowrap">
-            <div className="column-min">
+          <div className="row row-reversed padding-row y-axis-centered nowrap">
+            <div className="column-min col-margin">
+              <img
+                src={`./images/leon-heuer-2-min.jpg`}
+                id="about-me-img"
+                alt="Leon Heuer"
+              ></img>
+            </div>
+            <div className="column-min col-margin">
               <h1>About Me</h1>
               <p>
                 When I was only 10 years old, I started learning programming and
@@ -411,13 +418,6 @@ const IndexPage = () => {
                 </a>{" "}
                 or my <a href="#featured">projects</a> listed below.
               </p>
-            </div>
-            <div className="column-min">
-              <img
-                src={`./images/leon-heuer-2-min.jpg`}
-                id="about-me-img"
-                alt="Leon Heuer"
-              ></img>
             </div>
           </div>
         </div>
@@ -587,7 +587,37 @@ const IndexPage = () => {
               <h1>Contact Me</h1>
             </div>
           </div>
-          <div className="row">
+          <div className="row row-reversed">
+            <div className="column-left col-3 col-alt-padding">
+              <div className="row nowrap y-axis-centered padding-row row-slim">
+                <i className="fas fa-map-marked-alt double-line-icon"></i>
+                <div className="column-left">
+                  <span className="bold">Bad Schwartau, Germany</span>
+                  <span className="light">Am Brahmberg 25, D-23611</span>
+                </div>
+              </div>
+              <div className="row nowrap y-axis-centered padding-row row-slim">
+                <i className="fas fa-envelope-open-text double-line-icon"></i>
+                <div className="column-left">
+                  <span className="bold">leon(at)heuer.ovh</span>
+                  <span className="light">Send me an email</span>
+                </div>
+              </div>
+              <div className="row nowrap y-axis-centered padding-row row-slim">
+                <i className="fab fa-linkedin double-line-icon"></i>
+                <div className="column-left">
+                  <a
+                    href="https://www.linkedin.com/in/leonheuer/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bold"
+                  >
+                    LinkedIn/leonheuer
+                  </a>
+                  <span className="light">Send me a direct message</span>
+                </div>
+              </div>
+            </div>
             <div className="column-left col-3-double">
               <div className="row row-slim">
                 <input
@@ -641,36 +671,6 @@ const IndexPage = () => {
                   >
                     Send message
                   </button>
-                </div>
-              </div>
-            </div>
-            <div className="column-left col-3 col-alt-padding">
-              <div className="row nowrap y-axis-centered padding-row row-slim">
-                <i className="fas fa-map-marked-alt double-line-icon"></i>
-                <div className="column-left">
-                  <span className="bold">Bad Schwartau, Germany</span>
-                  <span className="light">Am Brahmberg 25, D-23611</span>
-                </div>
-              </div>
-              <div className="row nowrap y-axis-centered padding-row row-slim">
-                <i className="fas fa-envelope-open-text double-line-icon"></i>
-                <div className="column-left">
-                  <span className="bold">leon(at)heuer.ovh</span>
-                  <span className="light">Send me an email</span>
-                </div>
-              </div>
-              <div className="row nowrap y-axis-centered padding-row row-slim">
-                <i className="fab fa-linkedin double-line-icon"></i>
-                <div className="column-left">
-                  <a
-                    href="https://www.linkedin.com/in/leonheuer/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bold"
-                  >
-                    LinkedIn/leonheuer
-                  </a>
-                  <span className="light">Send me a direct message</span>
                 </div>
               </div>
             </div>

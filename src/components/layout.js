@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
       {children}
       <Footer />
       <span className={`scroll-to-top ${showToTop ? "visible" : ""}`}>
-        <a href="#top"><i className="fas fa-chevron-up"></i></a>
+        <a href="#top" aria-label="to-top"><i className="fas fa-chevron-up"></i></a>
       </span>
     </main>
   )

@@ -14,6 +14,14 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .col-4,
+  .col-4-triple {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .nav-links {
     display: none;
@@ -49,15 +57,28 @@
   }
 
   .col-3,
-  .col-3-double,
-  .col-4,
-  .col-4-triple {
+  .col-3-double {
     width: 50% !important;
     max-width: 50% !important;
   }
 
   .nowrap {
     flex-wrap: wrap !important;
+  }
+
+  .column-min {
+    width: 100% !important;
+    align-items: center;
+    text-align: center;
+  }
+
+  #about-me-img {
+    width: 10em !important;
+    height: 10em !important;
+  }
+
+  .image-wrapper::after {
+    transform: none !important;
   }
 }
 

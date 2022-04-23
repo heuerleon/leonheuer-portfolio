@@ -419,6 +419,10 @@ section {
   width: 100%;
 }
 
+.row-reversed {
+  flex-direction: row-reverse;
+}
+
 .padding-row {
   padding: 20px 0 !important;
 }
@@ -546,6 +550,10 @@ section {
   padding-top: 15px;
   padding-bottom: 15px;
   margin: 15px 0;
+}
+
+.col-margin {
+  margin: 20px 0;
 }
 
 .nowrap {
