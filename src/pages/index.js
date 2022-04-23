@@ -157,9 +157,6 @@ let projects = [
 
 // markup
 const IndexPage = () => {
-  useEffect(() => {
-  }, []);
-
   const [sendAttempted, setSendAttempted] = useState(false);
   const [contactSubject, setContactSubject] = useState("");
   const [contactEmail, setContactEmail] = useState("");
@@ -226,7 +223,7 @@ const IndexPage = () => {
   let scrollBefore = 0;
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
-    setInterval(handleScroll, 20);
+    setInterval(handleScroll, 10);
   }
 
   function handleScroll() {
