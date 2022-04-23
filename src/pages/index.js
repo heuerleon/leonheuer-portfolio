@@ -162,37 +162,17 @@ const IndexPage = () => {
   }, []);
 
   const [sendAttempted, setSendAttempted] = useState(false);
-  let all_fields_filled = false;
-
   const [contactSubject, setContactSubject] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactMessage, setContactMessage] = useState("");
-
-  function handleSubjectChange(event) {
-    event.preventDefault();
-    setContactSubject(event.target.value);
-  }
-  function handleEmailChange(event) {
-    event.preventDefault();
-    setContactEmail(event.target.value);
-  }
-  function handleNameChange(event) {
-    event.preventDefault();
-    setContactName(event.target.value);
-  }
-
-  function handleMessageChange(event) {
-    event.preventDefault();
-    setContactMessage(event.target.value);
-  }
 
   function sendMessage(event) {
     event.preventDefault();
     setSendAttempted(true);
     setCaptchaSuccess(true);
 		
-    all_fields_filled =
+    let all_fields_filled =
       contactSubject !== "" &&
       contactEmail !== "" &&
       contactName !== "" &&
@@ -258,7 +238,6 @@ const IndexPage = () => {
     }
   }
 
-
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [sortFilter, setSortFilter] = useState(0);
   const [sortTitle, setSortTitle] = useState("Sort by (Default)");
@@ -283,11 +262,6 @@ const IndexPage = () => {
         setSortTitle("Sort by (Default)")
       }
     }
-  }
-  
-  function toggleSortDropdown(event) {
-    event.preventDefault();
-    setShowSortDropdown(it => !it);
   }
   
   function sortProjectsAZ() {
@@ -503,7 +477,7 @@ const IndexPage = () => {
             <div className="column-left">
               <h1>More Projects</h1>
               <div className="dropdown">
-                <button className="dropdown-title" onClick={toggleSortDropdown}>
+                <button className="dropdown-title" onClick={setShowSortDropdown(it => !it)}>
                   {sortTitle}
                 </button>
                 <ul
@@ -589,7 +563,7 @@ const IndexPage = () => {
                 <input
                   type="text"
                   placeholder="Subject"
-                  onChange={handleSubjectChange}
+                  onChange={(event) => setContactSubject(event.target.value)}
                   className={
                     !contactSubject && sendAttempted ? "empty-input" : ""
                   }
@@ -598,7 +572,7 @@ const IndexPage = () => {
                 <input
                   type="text"
                   placeholder="Your email address"
-                  onChange={handleEmailChange}
+                  onChange={(event) => setContactEmail(event.target.value)}
                   className={`half-input ${
                     (!contactEmail && sendAttempted) ||
                     (!isValidEmail(contactEmail) && sendAttempted)
@@ -610,7 +584,7 @@ const IndexPage = () => {
                 <input
                   type="text"
                   placeholder="Your name"
-                  onChange={handleNameChange}
+                  onChange={(event) => setContactName(event.target.value)}
                   className={`half-input ${
                     !contactName && sendAttempted ? "empty-input" : ""
                   }`}
@@ -618,7 +592,7 @@ const IndexPage = () => {
 
                 <textarea
                   placeholder="Enter message"
-                  onChange={handleMessageChange}
+                  onChange={(event) => setContactMessage(event.target.value)}
                   className={
                     !contactMessage && sendAttempted ? "empty-input" : ""
                   }

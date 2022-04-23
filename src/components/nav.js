@@ -36,10 +36,6 @@ const Nav = () => {
     scrollBefore = window.scrollY;
   }
 
-  function toggleMobileNav(event) {
-    setShowMobileNav(it => !it);
-  }
-
   return (
     <nav
       className={`alt-section-dark ${
@@ -69,14 +65,14 @@ const Nav = () => {
           </li>
         </ul>
         <div className="mobile-nav">
-          <button className="mobile-nav-switcher" onClick={toggleMobileNav}>
+          <button className="mobile-nav-switcher" onClick={setShowMobileNav(it => !it)}>
             <i className={`fas ${showMobileNav ? "fa-times" : "fa-bars"}`}></i>
           </button>
           <ul
             className={`mobile-nav-links ${
               showMobileNav ? "mobile-nav-links-visible" : ""
             }`}
-            onClick={toggleMobileNav}
+            onClick={setShowMobileNav(it => !it)}
           >
             <li>
               <a href="/#top">Home</a>
