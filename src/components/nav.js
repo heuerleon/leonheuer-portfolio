@@ -2,29 +2,47 @@ import React, { useState } from "react";
 
 const Nav = () => {
   const [showMobileNav, setShowMobileNav] = useState(false);
-  const [navBarFixed, setNavBarFixed] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [fixed, setFixed] = useState(false);
+  const [invisible, setInvisible] = useState(false);
   let scrollBefore = 0;
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
-    setInterval(handleScroll, 20);
+    setInterval(handleScroll, 10);
   }
-  let shiftedDownBefore = false;
+
+  const Direction = {
+    UP: 0,
+    DOWN: 1,
+    NONE: 2
+  }
 
   function handleScroll() {
-    if (window.scrollY === 0) {
-      setScrolled(false);
-      setNavBarFixed(false);
-      shiftedDownBefore = false;
-    } else if (scrollBefore !== window.scrollY) {
-      let scrolledUp = scrollBefore > window.scrollY;
-      if (navBarFixed !== scrolledUp) {
-        setNavBarFixed(scrolledUp);
-        shiftedDownBefore = scrolledUp;
-      }
-      if (scrolled === scrolledUp && shiftedDownBefore) {
-        setScrolled(!scrolledUp);
-        shiftedDownBefore = scrolledUp;
+    if (scrollBefore !== window.scrollY) {
+      if (window.scrollY === 0) {
+        setInvisible(false);
+        setFixed(false);
+      } else {
+        let direction = Direction.NONE;
+        if (window.scrollY > scrollBefore) {
+          direction = Direction.DOWN;
+        }
+        if (window.scrollY < scrollBefore) {
+          direction = Direction.UP;
+        }
+
+        if (direction === Direction.UP) {
+          if (!fixed) {
+            setInvisible(false);
+            setFixed(true);
+          }
+        }
+
+        if (direction === Direction.DOWN) {
+          if (!invisible) {
+            setFixed(false);
+            setInvisible(true);
+          }
+        }
       }
     }
 
@@ -34,8 +52,8 @@ const Nav = () => {
   return (
     <nav
       className={`alt-section-dark ${
-        scrolled && !showMobileNav ? "nav-default" : ""
-      } ${navBarFixed || showMobileNav ? "nav-fixed" : ""}`}
+        invisible && !showMobileNav ? "nav-default" : ""
+      } ${fixed || showMobileNav ? "nav-fixed" : ""}`}
     >
       <div className="nav-inner">
         <h4 className="style-headline">leonheuer</h4>
