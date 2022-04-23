@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const Nav = () => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [fixed, setFixed] = useState(false);
   const [invisible, setInvisible] = useState(false);
-  let scrollBefore = 0;
+  const scrollBefore = useRef(0);
+  const wasFixedBefore = useRef(false);
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
-    setInterval(handleScroll, 10);
+    setInterval(() => handleScroll(), 10);
   }
 
   const Direction = {
@@ -17,16 +18,17 @@ const Nav = () => {
   }
 
   function handleScroll() {
-    if (scrollBefore !== window.scrollY) {
+    if (scrollBefore.current !== window.scrollY) {
       if (window.scrollY === 0) {
         setInvisible(false);
         setFixed(false);
+        wasFixedBefore.current = false;
       } else {
         let direction = Direction.NONE;
-        if (window.scrollY > scrollBefore) {
+        if (window.scrollY > scrollBefore.current) {
           direction = Direction.DOWN;
         }
-        if (window.scrollY < scrollBefore) {
+        if (window.scrollY < scrollBefore.current) {
           direction = Direction.UP;
         }
 
@@ -34,19 +36,20 @@ const Nav = () => {
           if (!fixed) {
             setInvisible(false);
             setFixed(true);
+            wasFixedBefore.current = true;
           }
         }
 
         if (direction === Direction.DOWN) {
-          if (!invisible) {
+          if (!invisible && wasFixedBefore.current) {
             setFixed(false);
             setInvisible(true);
           }
         }
       }
+      
+      scrollBefore.current = window.scrollY;
     }
-
-    scrollBefore = window.scrollY;
   }
 
   return (

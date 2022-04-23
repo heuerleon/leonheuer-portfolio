@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import TypeIt from "typeit-react";
 import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
@@ -35,7 +35,7 @@ const aboutMe =
   "learning Java, which has become my favourite programming language and the one I am most " +
   "experienced in.";
 
-let featured = [
+const featured = [
   {
     id: 0,
     image: "./images/projects/project-3.jpg",
@@ -220,16 +220,16 @@ const IndexPage = () => {
     backgroundPosition: topParralax,
   };
 
-  let scrollBefore = 0;
+  const scrollBefore = useRef(0);
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
     setInterval(handleScroll, 10);
   }
 
   function handleScroll() {
-    if (scrollBefore !== window.scrollY) {
+    if (scrollBefore.current !== window.scrollY) {
       setTopParralax("center " + window.scrollY * 0.3 + "px");
-      scrollBefore = window.scrollY;
+      scrollBefore.current = window.scrollY;
     }
   }
 
