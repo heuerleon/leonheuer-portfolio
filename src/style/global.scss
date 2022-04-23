@@ -270,6 +270,14 @@ p {
   margin: 0 0 10px;
   opacity: .8;
   line-height: 1.5em;
+
+  a {
+    border-bottom: 2px solid var(--main-color);
+
+    &:hover {
+      border-color: var(--accent);
+    }
+  }
 }
 
 .p-capped {

@@ -9,8 +9,8 @@ const Legal = () => {
           <div className="column-centered">
             <h1>Legal notice</h1>
             <p className="warning-message">
-              <i className="fas fa-info-circle"></i> Note that the content of
-              this site is only available in German as of now.
+              <i className="fas fa-info-circle"></i> The content of this site is
+              only available in German as of now.
             </p>
             <p>
               <a href="/">Home</a> / <a href="/legal-notice">Legal-Notice</a>
@@ -39,10 +39,6 @@ const Legal = () => {
                 Telefon: +49 176 66058083
                 <br />
                 E-Mail: leon(at)heuer.ovh
-              </p>
-
-              <p>
-                Quelle: <a href="https://www.e-recht24.de">eRecht24</a>
               </p>
             </div>
           </div>

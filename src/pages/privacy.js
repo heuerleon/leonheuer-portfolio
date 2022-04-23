@@ -9,8 +9,8 @@ const Privacy = () => {
           <div className="column-centered">
             <h1>Privacy policy</h1>
             <p className="warning-message">
-              <i className="fas fa-info-circle"></i> Note that the content of
-              this site is only available in German as of now.
+              <i className="fas fa-info-circle"></i> The content of this site is
+              only available in German as of now.
             </p>
             <p>
               <a href="/">Home</a> /{" "}
@@ -520,6 +520,6 @@ const Privacy = () => {
       </section>
     </Layout>
   );
-}
+};
 
 export default Privacy;

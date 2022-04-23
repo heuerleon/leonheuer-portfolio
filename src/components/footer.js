@@ -32,7 +32,7 @@ const Footer = () => {
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>
-            <span>Designed & Built by Leon Heuer</span>
+            <span>Designed & built by Leon Heuer</span>
             <span>
               <a
                 href="https://github.com/Hakuyamu/leonheuer-portfolio"
@@ -51,18 +51,6 @@ const Footer = () => {
               Contains images from{" "}
               <a href="https://unsplash.com/" target="_blank" rel="noreferrer">
                 Unsplash
-              </a>
-              ,{" "}
-              <a href="https://icons8.com/" target="_blank" rel="noreferrer">
-                ICONS8
-              </a>{" "}
-              and{" "}
-              <a
-                href="https://www.vectorlogo.zone/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                VectorLogoZone
               </a>
             </span>
           </div>

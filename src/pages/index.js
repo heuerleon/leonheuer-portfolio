@@ -6,14 +6,9 @@ import "../style/global.scss";
 
 const projectCats = [
   {
-    image: "./images/database.png",
-    h2: "Database Engineering",
-    p: "Creation and management of reliable database systems",
-  },
-  {
     image: "./images/desktop.png",
     h2: "Server-sided Applications",
-    p: "TODO",
+    p: "Development of backend infrastructures",
   },
   {
     image: "./images/web.png",
@@ -22,18 +17,15 @@ const projectCats = [
   },
   {
     image: "./images/game.png",
-    h2: "Game Development",
-    p: "Video game modifications and plugins",
+    h2: "Minecraft Development",
+    p: "Server-sided mods enhancing gameplay",
+  },
+  {
+    image: "./images/database.png",
+    h2: "Database Engineering",
+    p: "Creation and management of reliable database systems",
   },
 ];
-
-const aboutMe =
-  "When I was 10 years old, I found a book about Small Basic in my father's bookshelf. It raised my " +
-  "interest in programming and tought me the very basics of programming logic. Shortly after that, " +
-  "I created my first website and learned the basics of modern web design. Three years ago, I found out " +
-  "I could create my own gameplay extensions for the video game Minecraft I was playing, so I started " +
-  "learning Java, which has become my favourite programming language and the one I am most " +
-  "experienced in.";
 
 const featured = [
   {
@@ -167,7 +159,7 @@ const IndexPage = () => {
     event.preventDefault();
     setSendAttempted(true);
     setCaptchaSuccess(true);
-		
+
     let all_fields_filled =
       contactSubject !== "" &&
       contactEmail !== "" &&
@@ -244,21 +236,21 @@ const IndexPage = () => {
     switch (index) {
       case 1: {
         sortProjectsAZ();
-        setSortTitle("Sort by (A to Z)")
+        setSortTitle("Sort by (A to Z)");
         break;
       }
       case 2: {
         sortProjectsZA();
-        setSortTitle("Sort by (Z to A)")
+        setSortTitle("Sort by (Z to A)");
         break;
       }
       default: {
         sortProjectsDefault();
-        setSortTitle("Sort by (Default)")
+        setSortTitle("Sort by (Default)");
       }
     }
   }
-  
+
   function sortProjectsAZ() {
     const titles = [];
     projects.forEach((element) => {
@@ -267,7 +259,7 @@ const IndexPage = () => {
     titles.sort();
     updateProjects(titles);
   }
-  
+
   function sortProjectsZA() {
     const titles = [];
     projects.forEach((element) => {
@@ -277,11 +269,11 @@ const IndexPage = () => {
     titles.reverse();
     updateProjects(titles);
   }
-  
+
   function sortProjectsDefault() {
     updateProjects(projectsDefault);
   }
-  
+
   function updateProjects(newOrder) {
     const newProjects = [];
     for (let i = 0; i < projects.length; i++) {
@@ -378,7 +370,48 @@ const IndexPage = () => {
           <div className="row padding-row y-axis-centered nowrap">
             <div className="column-min">
               <h1>About Me</h1>
-              <p>{aboutMe}</p>
+              <p>
+                When I was only 10 years old, I started learning programming and
+                the basics of web development. I am actively writing desktop
+                applications with C# and server-side mods for Minecraft with
+                Java and Kotlin, utilizing MongoDB as database management
+                system. I also have experience with the scripting languages
+                JavaScript and Python, as well as the frontend frameworks React
+                and Svelte.
+              </p>
+              <p>
+                At the moment, I am about to graduate from a high school in
+                Germany and looking for dual study opportunities in computer
+                science. In my free time, I develop server-side mods for a{" "}
+                <a
+                  href="https://www.minecraft.net/en-us"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Minecraft
+                </a>
+                {" "}server called{" "}
+                <a
+                  href="https://github.com/skycavemc"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  SkyCave
+                </a>
+                , where thousands of players have already used what I developed.
+              </p>
+              <p>
+                If you're interested in what I do, feel free to take a look at
+                my{" "}
+                <a
+                  href="https://github.com/heuerleon?tab=repositories"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub repositories
+                </a>{" "}
+                or my <a href="#featured">projects</a> listed below.
+              </p>
             </div>
             <div className="column-min">
               <img
@@ -391,7 +424,7 @@ const IndexPage = () => {
         </div>
       </section>
 
-      <section className="padding-section alt-section" id="services">
+      <section className="padding-section alt-section" id="what-i-do">
         <div className="container">
           <div className="row">
             <div className="column-centered">
@@ -472,7 +505,10 @@ const IndexPage = () => {
             <div className="column-left">
               <h1>More Projects</h1>
               <div className="dropdown">
-                <button className="dropdown-title" onClick={() => setShowSortDropdown(it => !it)}>
+                <button
+                  className="dropdown-title"
+                  onClick={() => setShowSortDropdown((it) => !it)}
+                >
                   {sortTitle}
                 </button>
                 <ul
@@ -600,7 +636,10 @@ const IndexPage = () => {
                   data-callback="setSuccess"
                 ></div>
                 <div className="button-container">
-                  <button className="btn-primary" onClick={(event) => sendMessage(event)}>
+                  <button
+                    className="btn-primary"
+                    onClick={(event) => sendMessage(event)}
+                  >
                     Send message
                   </button>
                 </div>
