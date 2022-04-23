@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 
 const Nav = () => {
-  useEffect(() => {
-    setInterval(handleScroll, 20);
-  }, []);
-
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [navBarFixed, setNavBarFixed] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   let scrollBefore = 0;
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
-    scrollBefore = window.scrollY;
+    setInterval(handleScroll, 20);
   }
   let shiftedDownBefore = false;
 

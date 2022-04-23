@@ -158,7 +158,6 @@ let projects = [
 // markup
 const IndexPage = () => {
   useEffect(() => {
-    setInterval(handleScroll, 20);
   }, []);
 
   const [sendAttempted, setSendAttempted] = useState(false);
@@ -227,8 +226,7 @@ const IndexPage = () => {
   let scrollBefore = 0;
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
-    scrollBefore = window.scrollY;
-    setTopParralax("center " + window.scrollY * 0.3 + "px");
+    setInterval(handleScroll, 20);
   }
 
   function handleScroll() {
