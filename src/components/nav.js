@@ -59,7 +59,7 @@ const Nav = () => {
       } ${fixed || showMobileNav ? "nav-fixed" : ""}`}
     >
       <div className="nav-inner">
-        <h4 className="style-headline">leonheuer</h4>
+        <h4 className="style-headline"><a href="/">heuer.ovh</a></h4>
         <ul className="nav-links">
           <li>
             <a href="/#top">Home</a>

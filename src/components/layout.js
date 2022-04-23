@@ -2,6 +2,7 @@ import React from "react"
 import Helmet from "react-helmet"
 import Nav from "./nav"
 import Footer from "./footer"
+import "../style/global.scss";
 
 const Layout = ({ children }) => {
   return (

@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import TypeIt from "typeit-react";
 import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
-import "../style/global.scss";
 
 const projectCats = [
   {
