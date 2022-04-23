@@ -6,4 +6,5 @@ module.exports = {
   plugins: [
     "gatsby-plugin-sass"
   ],
+  pathPrefix: "/leonheuer-portfolio"
 };
