@@ -14,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PAT }}
+    - name: Cache
+      uses: actions/cache@v3.0.2
+      with:
+        path: /node-modules
     - name: Use Node.js 16.x
       uses: actions/setup-node@v3
       with:
@@ -21,7 +27,6 @@ jobs:
         cache: 'npm'
     - name: Configure Git identity
       run: |
-        git config --global credential.helper wincred
         git config --global user.email "leon@heuer.ovh"
         git config --global user.name "GitHub Actions"
     - run: npm install
