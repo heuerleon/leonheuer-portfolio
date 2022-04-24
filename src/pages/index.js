@@ -177,10 +177,12 @@ const IndexPage = () => {
           if (request.status >= 200 && request.status < 300) {
             navigate("/contact-success/");
           } else {
-            alert("Error processing your contact request. Please use another contact option.");
+            alert(
+              "Error processing your contact request. Please use another contact option."
+            );
           }
         }
-      }
+      };
       request.setRequestHeader("Accept", "application/json");
       request.setRequestHeader("Content-Type", "application/json");
       request.onload = () => console.log(request.responseText);
@@ -225,6 +227,8 @@ const IndexPage = () => {
   const scrollBefore = useRef(0);
   const isBrowser = typeof window !== "undefined";
   if (isBrowser) {
+    scrollBefore.current = window.scrollY;
+    handleScroll();
     setInterval(handleScroll, 10);
   }
 
@@ -392,10 +396,10 @@ const IndexPage = () => {
             <div className="column-min col-margin">
               <h1>About Me</h1>
               <p>
-                When I was only 10 years old, I started learning programming and
-                the basics of web development. I am actively writing desktop
-                applications with C# and server-side mods for Minecraft with
-                Java and Kotlin, utilizing MongoDB as database management
+                My name is Leon Heuer and I am a software developer at the age
+                of 17, programming for 7 years now. I am actively writing
+                desktop applications with C# and server-side mods for Minecraft
+                with Java and Kotlin, utilizing MongoDB as database management
                 system. I also have experience with the scripting languages
                 JavaScript and Python, as well as the frontend frameworks React
                 and Svelte.
@@ -410,8 +414,8 @@ const IndexPage = () => {
                   rel="noreferrer"
                 >
                   Minecraft
-                </a>
-                {" "}server called{" "}
+                </a>{" "}
+                server called{" "}
                 <a
                   href="https://github.com/skycavemc"
                   target="_blank"
