@@ -326,17 +326,6 @@ b {
   font-size: .8em;
 }
 
-.input-wrapper {
-  width: 100%;
-  position: relative;
-
-  span {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-}
-
 input,
 textarea {
   font: inherit;
@@ -354,8 +343,6 @@ textarea {
   opacity: .7;
   outline: 0 solid transparent;
   box-shadow: var(--shadow-light);
-  margin: 10px 0;
-  position: relative;
 
   &:hover {
     opacity: 1;
@@ -364,20 +351,6 @@ textarea {
   &:focus {
     opacity: 1;
     outline: 2px solid var(--accent-darker);
-  }
-
-  span {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-}
-
-.half-input {
-  width: calc(50% - 5px);
-  margin-right: 10px;
-  &:last-of-type {
-    margin-right: 0;
   }
 }
 
@@ -393,10 +366,64 @@ textarea {
   color: red;
 }
 
-.column-starter {
-  padding-left: 15px;
-  box-sizing: border-box;
-  color: var(--accent);
+.input-wrapper {
+  width: 100%;
+  position: relative;
+  margin: 10px 0;
+  position: relative;
+
+  span {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: .7em;
+    opacity: .7;
+    width: fit-content;
+  }
+}
+
+.half-input {
+  width: calc(50% - 5px);
+  margin-left: 10px;
+
+  &:nth-of-type(2) {
+    margin-left: 0;
+  }
+}
+
+.captcha-wrapper {
+  margin: 10px 0;
+  span {
+    display: block;
+  }
+}
+
+.contact-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 10px;
+  text-align: left;
+
+  div {
+    display: block;
+
+    span {
+      display: block;
+      white-space: nowrap;
+    }
+  }
+
+  i {
+    display: block;
+    font-size: 2em;
+    width: 1.1em;
+    display: flex;
+    justify-content: center;
+    margin-right: 15px;
+    color: var(--accent);
+  }
 }
 
 .icon-container {
@@ -522,16 +549,8 @@ textarea {
   }
 }
 
-.double-line-icon {
-  display: block;
-  font-size: 2em;
-  min-width: 1.1em;
-  padding: 0 15px;
-  color: var(--accent);
-}
-
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 #portrait {

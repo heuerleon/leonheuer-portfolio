@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import TypeIt from "typeit-react";
 import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
 import { navigate } from "gatsby";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 const projectCats = [
   {
@@ -154,17 +155,54 @@ const IndexPage = () => {
   const [contactEmail, setContactEmail] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactMessage, setContactMessage] = useState("");
+  const [token, setToken] = useState(null);
 
-  function sendMessage(event) {
+  function handleSubjectChange(event) {
+    let content = event.target.value;
+    if (content.length > 100) {
+      event.preventDefault();
+      event.target.value = content.substring(0, 100);
+    }
+    setContactSubject(event.target.value);
+  }
+
+  function handleNameChange(event) {
+    let content = event.target.value;
+    if (content.length > 50) {
+      event.preventDefault();
+      event.target.value = content.substring(0, 50);
+    }
+    setContactName(event.target.value);
+  }
+
+  function handleEmailChange(event) {
+    let content = event.target.value;
+    if (content.length > 50) {
+      event.preventDefault();
+      event.target.value = content.substring(0, 50);
+    }
+    setContactEmail(event.target.value);
+  }
+
+  function handleMessageChange(event) {
+    let content = event.target.value;
+    if (content.length > 500) {
+      event.preventDefault();
+      event.target.value = content.substring(0, 500);
+    }
+    setContactMessage(event.target.value);
+  }
+
+  function sendMessage() {
     setSendAttempted(true);
-    setCaptchaSuccess(true);
 
     let all_fields_filled =
-      contactSubject !== "" &&
-      contactEmail !== "" &&
-      contactName !== "" &&
-      contactMessage !== "" &&
-      captchaSuccess;
+      contactSubject &&
+      contactEmail &&
+      isValidEmail(contactEmail) &&
+      contactName &&
+      contactMessage &&
+      token;
 
     if (all_fields_filled) {
       let request = new XMLHttpRequest();
@@ -207,12 +245,8 @@ const IndexPage = () => {
         ],
       });
       request.send(body);
-    } else {
-      alert(":(");
     }
   }
-
-  const [captchaSuccess, setCaptchaSuccess] = useState(false);
 
   function isValidEmail(email) {
     const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
@@ -297,10 +331,6 @@ const IndexPage = () => {
       newProjects[newOrder.indexOf(element.title)] = element;
     });
     projects = newProjects;
-  }
-
-  function success() {
-    alert("success!");
   }
 
   return (
@@ -401,8 +431,8 @@ const IndexPage = () => {
                 desktop applications with C# and server-side mods for Minecraft
                 with Java and Kotlin, utilizing MongoDB as database management
                 system. I also have experience with the scripting languages
-                JavaScript and Python, as well as the frontend frameworks React
-                and Svelte.
+                JavaScript and Python, as well as the frontend library React and
+                the framework Svelte.
               </p>
               <p>
                 At the moment, I am about to graduate from a high school in
@@ -474,9 +504,9 @@ const IndexPage = () => {
               <h1>Featured Projects</h1>
             </div>
           </div>
-          {featured.map((project) => (
-            <div className="row padding-row x-axis-space-between y-axis-stretched">
-              <div className="column">
+          <div className="row padding-row x-axis-space-between y-axis-stretched">
+            <div className="column">
+              {featured.map((project) => (
                 <div
                   className={`featured ${
                     project.id % 2 === 1 ? "featured-right" : ""
@@ -511,9 +541,9 @@ const IndexPage = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -602,73 +632,116 @@ const IndexPage = () => {
       <section className="padding-section" id="contact">
         <div className="container">
           <div className="row">
-            <div className="column-left">
+            <div className="column-min">
               <h1>Contact Me</h1>
             </div>
           </div>
-          <div className="row row-reversed">
-            <div className="column-left col-3 col-alt-padding">
-              <div className="row nowrap y-axis-centered padding-row row-slim">
+          <div className="row row-reversed nowrap">
+            <div className="column-min row-on-smaller-screens">
+              <div className="contact-option">
                 <i className="fas fa-envelope-open-text double-line-icon"></i>
-                <div className="column-left">
+                <div>
                   <span className="bold">leon(at)heuer.ovh</span>
                   <span className="light">Send me an email</span>
                 </div>
               </div>
-              <div className="row nowrap y-axis-centered padding-row row-slim">
+              <div className="contact-option">
                 <i className="fab fa-discord double-line-icon"></i>
-                <div className="column-left">
+                <div>
                   <span className="bold">haku#7136</span>
                   <span className="light">Add me on discord</span>
                 </div>
               </div>
             </div>
-            <div className="column-left col-3-double">
+            <div className="column-min">
               <div className="row row-slim">
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  onChange={(event) => setContactSubject(event.target.value)}
-                  className={
-                    !contactSubject && sendAttempted ? "empty-input" : ""
-                  }
-                />
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    onChange={(event) => handleSubjectChange(event)}
+                    className={
+                      !contactSubject && sendAttempted ? "empty-input" : ""
+                    }
+                  />
+                  <span>{contactSubject.length}/100</span>
+                </div>
 
-                <input
-                  type="text"
-                  placeholder="Your email address"
-                  onChange={(event) => setContactEmail(event.target.value)}
-                  className={`half-input ${
-                    (!contactEmail && sendAttempted) ||
-                    (!isValidEmail(contactEmail) && sendAttempted)
-                      ? "empty-input"
-                      : ""
-                  }`}
-                />
+                <div class="input-wrapper half-input">
+                  <input
+                    type="text"
+                    placeholder="Your email address"
+                    onChange={(event) => handleEmailChange(event)}
+                    className={`${
+                      (!contactEmail && sendAttempted) ||
+                      (!isValidEmail(contactEmail) && sendAttempted)
+                        ? "empty-input"
+                        : ""
+                    }`}
+                  />
+                  <span>{contactEmail.length}/50</span>
+                </div>
 
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  onChange={(event) => setContactName(event.target.value)}
-                  className={`half-input ${
-                    !contactName && sendAttempted ? "empty-input" : ""
-                  }`}
-                />
+                <div class="input-wrapper half-input">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    onChange={(event) => handleNameChange(event)}
+                    className={`${
+                      !contactName && sendAttempted ? "empty-input" : ""
+                    }`}
+                  />
+                  <span>{contactName.length}/50</span>
+                </div>
 
-                <textarea
-                  placeholder="Enter message"
-                  onChange={(event) => setContactMessage(event.target.value)}
-                  className={
-                    !contactMessage && sendAttempted ? "empty-input" : ""
-                  }
-                ></textarea>
+                <div class="input-wrapper">
+                  <textarea
+                    placeholder="Enter message"
+                    onChange={(event) => handleMessageChange(event)}
+                    className={
+                      !contactMessage && sendAttempted ? "empty-input" : ""
+                    }
+                  ></textarea>
+                  <span>{contactMessage.length}/500</span>
+                </div>
+
+                <div class="captcha-wrapper">
+                  <HCaptcha
+                    sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
+                    onVerify={setToken}
+                  />
+                  <span
+                    className={`error-message ${
+                      token || !sendAttempted ? "hidden" : ""
+                    }`}
+                  >
+                    You have to complete the captcha.
+                  </span>
+                  <span
+                    className={`error-message ${
+                      (contactEmail &&
+                        contactName &&
+                        contactSubject &&
+                        contactMessage) ||
+                      !sendAttempted
+                        ? "hidden"
+                        : ""
+                    }`}
+                  >
+                    Please fill in all fields.
+                  </span>
+                  <span
+                    className={`error-message ${
+                      isValidEmail(contactEmail) || !sendAttempted
+                        ? "hidden"
+                        : ""
+                    }`}
+                  >
+                    Please enter a valid E-Mail address.
+                  </span>
+                </div>
               </div>
               <div className="row row-slim">
-                <div
-                  className="h-captcha"
-                  data-sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
-                  data-callback="success"
-                ></div>
                 <div className="button-container">
                   <button
                     className="btn-primary"
