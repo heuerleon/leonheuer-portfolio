@@ -655,7 +655,7 @@ const IndexPage = () => {
             </div>
             <div className="column-min">
               <div className="row row-slim">
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                   <input
                     type="text"
                     placeholder="Subject"
@@ -667,7 +667,7 @@ const IndexPage = () => {
                   <span>{contactSubject.length}/100</span>
                 </div>
 
-                <div class="input-wrapper half-input">
+                <div className="input-wrapper half-input">
                   <input
                     type="text"
                     placeholder="Your email address"
@@ -682,7 +682,7 @@ const IndexPage = () => {
                   <span>{contactEmail.length}/50</span>
                 </div>
 
-                <div class="input-wrapper half-input">
+                <div className="input-wrapper half-input">
                   <input
                     type="text"
                     placeholder="Your name"
@@ -694,7 +694,7 @@ const IndexPage = () => {
                   <span>{contactName.length}/50</span>
                 </div>
 
-                <div class="input-wrapper">
+                <div className="input-wrapper">
                   <textarea
                     placeholder="Enter message"
                     onChange={(event) => handleMessageChange(event)}
@@ -705,7 +705,7 @@ const IndexPage = () => {
                   <span>{contactMessage.length}/500</span>
                 </div>
 
-                <div class="captcha-wrapper">
+                <div className="captcha-wrapper">
                   <HCaptcha
                     sitekey="dc87f7c2-9f10-4b84-9faf-45114d2e2285"
                     onVerify={setToken}
