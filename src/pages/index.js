@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import TypeIt from "typeit-react";
 import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
@@ -31,39 +31,39 @@ const projectCats = [
 const featured = [
   {
     id: 0,
-    image: "./images/projects/project-3.jpg",
+    image: "./images/projects/portfolio.jpg",
     title: "My portfolio",
     langs: [
-      { image: "./images/language_icons/typescript.svg", title: "TypeScript" },
-      { image: "./images/language_icons/svelte.svg", title: "Svelte" },
+      { image: "./images/language_icons/javascript.svg", title: "JavaScript" },
+      { image: "./images/language_icons/gatsby.svg", title: "Gatsby" },
       { image: "./images/language_icons/vscode.svg", title: "VS Code" },
       { image: "./images/language_icons/sass.svg", title: "SASS/SCSS" },
     ],
-    source: "/",
+    source: "https://github.com/heuerleon/leonheuer-portfolio",
     desc: "My personal portfolio website you're currently looking at.",
   },
   {
     id: 1,
     image: "./images/projects/project-1.jpg",
-    title: "MC GUI API",
+    title: "osu!backup",
     langs: [
-      { image: "./images/language_icons/java.svg", title: "Java" },
-      { image: "./images/language_icons/intellij.svg", title: "IntelliJ IDEA" },
+      { image: "./images/language_icons/csharp.svg", title: "C#" },
+      { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
     ],
-    source: "/",
-    desc: "MC GUI API is an API for creating graphical user interfaces in the video game Minecraft.",
+    source: "https://github.com/heuerleon/osu-backup",
+    desc: 'GUI based backupper for the game "osu!". Allows exporting you local player data and importing it conveniently on another machine. ',
   },
   {
     id: 2,
     image: "./images/projects/project-2.jpg",
-    title: "Passman",
+    title: "SkyCave Island System",
     langs: [
-      { image: "./images/language_icons/csharp.svg", title: "C#" },
-      { image: "./images/language_icons/postgresql.svg", title: "PostgreSQL" },
-      { image: "./images/language_icons/rider.svg", title: "Rider" },
+      { image: "./images/language_icons/java.svg", title: "Java" },
+      { image: "./images/language_icons/intellij.svg", title: "IntelliJ IDEA" },
+      { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
     ],
-    source: "/",
-    desc: "A desktop application that stores passwords safely.",
+    source: "https://github.com/skycavemc/island-system",
+    desc: "An island system for the Minecraft server SkyCave. Allows creation and management of protected Islands with their own regions, members etc.",
   },
 ];
 
@@ -80,15 +80,13 @@ const projectsDefault = [
 let projects = [
   {
     image: "./images/projects/project-3.jpg",
-    title: "My portfolio",
+    title: "MC GUI API",
     langs: [
-      { image: "./images/language_icons/typescript.svg", title: "TypeScript" },
-      { image: "./images/language_icons/svelte.svg", title: "Svelte" },
-      { image: "./images/language_icons/vscode.svg", title: "VS Code" },
-      { image: "./images/language_icons/sass.svg", title: "SASS/SCSS" },
+      { image: "./images/language_icons/java.svg", title: "Java" },
+      { image: "./images/language_icons/intellij.svg", title: "IntelliJ IDEA" },
     ],
-    source: "/",
-    desc: "My personal portfolio website you're currently looking at.",
+    source: "https://github.com/heuerleon/mcguiapi",
+    desc: "MC GUI API is an API for creating graphical user interfaces using inventories in minecraft.",
   },
   {
     image: "./images/projects/project-1.jpg",
@@ -99,52 +97,51 @@ let projects = [
       { image: "./images/language_icons/vscode.svg", title: "VS Code" },
       { image: "./images/language_icons/sass.svg", title: "SASS/SCSS" },
     ],
-    source: "/",
-    desc: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+    source: "https://github.com/skycavemc/skycave-website",
+    desc: "Official website of the SkyCave Minecraft server.",
   },
   {
     image: "./images/projects/project-2.jpg",
-    title: "Minecraft plugins",
+    title: "WhatsFlat",
     langs: [
-      { image: "./images/language_icons/kotlin.svg", title: "Kotlin" },
-      { image: "./images/language_icons/java.svg", title: "Java" },
-      { image: "./images/language_icons/intellij.svg", title: "IntelliJ IDEA" },
+      { image: "./images/language_icons/csharp.svg", title: "C#" },
+      { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
       { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
     ],
-    source: "/",
-    desc: "A collection of Minecraft plugins I developed for the SkyCave Server.",
+    source: "https://github.com/heuerleon/whatsflat",
+    desc: "WhatsFlat is a simple chat application.",
   },
   {
     image: "./images/projects/project-4.jpg",
-    title: "LTS Store",
+    title: "Passman",
     langs: [
-      { image: "./images/language_icons/java.svg", title: "Java" },
-      { image: "./images/language_icons/spring.svg", title: "Spring" },
-      { image: "./images/language_icons/intellij.svg", title: "IntelliJ" },
+      { image: "./images/language_icons/csharp.svg", title: "C#" },
+      { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
       { image: "./images/language_icons/postgresql.svg", title: "PostgreSQL" },
-      { image: "./images/language_icons/javascript.svg", title: "JavaScript" },
-      { image: "./images/language_icons/react.svg", title: "React" },
     ],
-    source: "/",
-    desc: "An online shopping platform I'm currently developing for some friends.",
+    source: "https://github.com/heuerleon/passman",
+    desc: "Simple password manager that stores your passwords. Also provides a simple password generator.",
+  },
+  {
+    image: "./images/projects/project-3.jpg",
+    title: "SkyCave JobSystem",
+    langs: [
+      { image: "./images/language_icons/java.svg", title: "Kotlin" },
+      { image: "./images/language_icons/intellij.svg", title: "IntelliJ" },
+      { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
+    ],
+    source: "https://github.com/skycavemc/JobSystem",
+    desc: "Plugin for the Minecraft Server SkyCave, providing Jobs with different advantages.",
   },
   {
     image: "./images/projects/project-2.jpg",
     title: "Sudoku Solver",
-    langs: [{ image: "./images/language_icons/csharp.svg", title: "C#" }],
-    source: "/",
-    desc: "A tool to solve any pattern of a Sudoku riddle.",
-  },
-  {
-    image: "./images/projects/project-3.jpg",
-    title: "WhatsFlat",
     langs: [
-      { image: "./images/language_icons/java.svg", title: "Java" },
-      { image: "./images/language_icons/intellij.svg", title: "IntelliJ" },
-      { image: "./images/language_icons/rabbitmq.svg", title: "RabbitMQ" },
+      { image: "./images/language_icons/csharp.svg", title: "C#" },
+      { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
     ],
-    source: "/",
-    desc: "A messaging client built using RabbitMQ.",
+    source: "https://github.com/heuerleon/sudoku-solver",
+    desc: "Simple Windows Application that can solve any valid Sudoku pattern.",
   },
 ];
 
@@ -351,7 +348,6 @@ const IndexPage = () => {
                       "Linux server administrator",
                       "Java & Kotlin developer",
                       "Gaming enthusiast",
-                      "Hobby game developer",
                       "Computer hardware hobbyist",
                     ],
                     loop: true,
