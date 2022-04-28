@@ -44,7 +44,7 @@ const featured = [
   },
   {
     id: 1,
-    image: "./images/projects/project-1.jpg",
+    image: "./images/projects/osu-backup.jpg",
     title: "osu!backup",
     langs: [
       { image: "./images/language_icons/csharp.svg", title: "C#" },
@@ -55,7 +55,7 @@ const featured = [
   },
   {
     id: 2,
-    image: "./images/projects/project-2.jpg",
+    image: "./images/projects/sc-islands.jpg",
     title: "SkyCave Island System",
     langs: [
       { image: "./images/language_icons/java.svg", title: "Java" },
@@ -68,16 +68,25 @@ const featured = [
 ];
 
 const projectsDefault = [
-  "My portfolio",
+  "SkyCave JobSystem",
+  "MC GUI API",
   "SkyCave website",
-  "Minecraft plugins",
-  "LTS Store",
-  "Sudoku Solver",
   "WhatsFlat",
-  "PasswordGen",
+  "Passman",
 ];
 
 let projects = [
+  {
+    image: "./images/projects/sc-jobs.jpg",
+    title: "SkyCave JobSystem",
+    langs: [
+      { image: "./images/language_icons/kotlin.svg", title: "Kotlin" },
+      { image: "./images/language_icons/intellij.svg", title: "IntelliJ" },
+      { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
+    ],
+    source: "https://github.com/skycavemc/JobSystem",
+    desc: "Plugin for the Minecraft Server SkyCave, providing Jobs with different advantages.",
+  },
   {
     image: "./images/projects/project-3.jpg",
     title: "MC GUI API",
@@ -89,7 +98,7 @@ let projects = [
     desc: "MC GUI API is an API for creating graphical user interfaces using inventories in minecraft.",
   },
   {
-    image: "./images/projects/project-1.jpg",
+    image: "./images/projects/sc-website.jpg",
     title: "SkyCave website",
     langs: [
       { image: "./images/language_icons/typescript.svg", title: "TypeScript" },
@@ -109,7 +118,7 @@ let projects = [
       { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
     ],
     source: "https://github.com/heuerleon/whatsflat",
-    desc: "WhatsFlat is a simple chat application.",
+    desc: "WhatsFlat is a simple chat application. Still in development.",
   },
   {
     image: "./images/projects/project-4.jpg",
@@ -120,28 +129,7 @@ let projects = [
       { image: "./images/language_icons/postgresql.svg", title: "PostgreSQL" },
     ],
     source: "https://github.com/heuerleon/passman",
-    desc: "Simple password manager that stores your passwords. Also provides a simple password generator.",
-  },
-  {
-    image: "./images/projects/project-3.jpg",
-    title: "SkyCave JobSystem",
-    langs: [
-      { image: "./images/language_icons/java.svg", title: "Kotlin" },
-      { image: "./images/language_icons/intellij.svg", title: "IntelliJ" },
-      { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
-    ],
-    source: "https://github.com/skycavemc/JobSystem",
-    desc: "Plugin for the Minecraft Server SkyCave, providing Jobs with different advantages.",
-  },
-  {
-    image: "./images/projects/project-2.jpg",
-    title: "Sudoku Solver",
-    langs: [
-      { image: "./images/language_icons/csharp.svg", title: "C#" },
-      { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
-    ],
-    source: "https://github.com/heuerleon/sudoku-solver",
-    desc: "Simple Windows Application that can solve any valid Sudoku pattern.",
+    desc: "Simple password manager that stores your passwords. Also provides a simple password generator. Still in development.",
   },
 ];
 
@@ -588,7 +576,7 @@ const IndexPage = () => {
               </div>
             </div>
           </div>
-          <div className="row padding-row x-axis-space-between y-axis-stretched">
+          <div className="row padding-row y-axis-stretched">
             {projects.map((project) => (
               <div className="column-centered col-3">
                 <div className="box box-image">
