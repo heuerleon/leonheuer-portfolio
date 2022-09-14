@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GITHUB_PROFILE } from "../constants";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
           <div className="column-centered">
             <div className="social-media-container">
               <a
-                href="https://github.com/heuerleon"
+                href={GITHUB_PROFILE}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="github"
@@ -35,7 +36,7 @@ const Footer = () => {
             <span>Designed & built by Leon Heuer</span>
             <span>
               <a
-                href="https://github.com/Hakuyamu/leonheuer-portfolio"
+                href={GITHUB_PROFILE + "leonheuer-portfolio"}
                 className="link"
                 target="_blank"
                 rel="noreferrer"
