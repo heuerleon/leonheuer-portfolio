@@ -8,8 +8,8 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 const projectCats = [
   {
     image: "./images/desktop.png",
-    h2: "Server-sided Applications",
-    p: "Development of backend infrastructures",
+    h2: "Desktop Tools",
+    p: "Desktop applications primarily for Windows",
   },
   {
     image: "./images/web.png",
@@ -18,13 +18,13 @@ const projectCats = [
   },
   {
     image: "./images/game.png",
-    h2: "Minecraft Development",
-    p: "Server-sided mods enhancing gameplay",
+    h2: "Minecraft Plugins",
+    p: "Server-sided mods that enhance the gameplay",
   },
   {
-    image: "./images/database.png",
-    h2: "Database Engineering",
-    p: "Creation and management of reliable database systems",
+    image: "./images/mobile.png",
+    h2: "Mobile Apps",
+    p: "Development of native Android apps",
   },
 ];
 
