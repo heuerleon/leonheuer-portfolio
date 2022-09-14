@@ -211,7 +211,7 @@ const IndexPage = () => {
       request.onload = () => console.log(request.responseText);
       let body = JSON.stringify({
         content:
-          "<@320518030243135490> someone has used the contact form on your website https://leonheuer.de",
+          "<@320518030243135490> someone has used the contact form on your website https://heuer.ovh",
         allowed_mentions: {
           parse: ["users"],
         },
@@ -419,9 +419,13 @@ const IndexPage = () => {
                 the framework Svelte.
               </p>
               <p>
-                At the moment, I am about to graduate from a high school in
-                Germany and looking for dual study opportunities in computer
-                science. In my free time, I develop server-side mods for a{" "}
+                At the moment, I am doing a dual study in applied computer
+                science at{" "}
+                <a href="https://www.otto.de/" target="_blank" rel="noreferrer">
+                  OTTO
+                </a>{" "}
+                where I currently work on the OTTO App. In my free time, I
+                develop server-side mods for a{" "}
                 <a
                   href="https://www.minecraft.net/en-us"
                   target="_blank"
