@@ -4,6 +4,7 @@ import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
 import { navigate } from "gatsby";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { GITHUB_PROFILE, GITHUB_PROFILE_ALT } from "../constants.js";
 
 const projectCats = [
   {
@@ -39,7 +40,7 @@ const featured = [
       { image: "./images/language_icons/vscode.svg", title: "VS Code" },
       { image: "./images/language_icons/sass.svg", title: "SASS/SCSS" },
     ],
-    source: "https://github.com/heuerleon/leonheuer-portfolio",
+    source: GITHUB_PROFILE + "leonheuer-portfolio",
     desc: "My personal portfolio website you're currently looking at.",
   },
   {
@@ -50,7 +51,7 @@ const featured = [
       { image: "./images/language_icons/csharp.svg", title: "C#" },
       { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
     ],
-    source: "https://github.com/heuerleon/osu-backup",
+    source: GITHUB_PROFILE + "osu-backup",
     desc: 'GUI based backupper for the game "osu!". Allows exporting you local player data and importing it conveniently on another machine. ',
   },
   {
@@ -94,7 +95,7 @@ let projects = [
       { image: "./images/language_icons/java.svg", title: "Java" },
       { image: "./images/language_icons/intellij.svg", title: "IntelliJ IDEA" },
     ],
-    source: "https://github.com/heuerleon/mcguiapi",
+    source: GITHUB_PROFILE + "mcguiapi",
     desc: "MC GUI API is an API for creating graphical user interfaces using inventories in minecraft.",
   },
   {
@@ -117,7 +118,7 @@ let projects = [
       { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
       { image: "./images/language_icons/mongodb.svg", title: "MongoDB" },
     ],
-    source: "https://github.com/heuerleon/whatsflat",
+    source: "https://github.com/whatsflat/",
     desc: "WhatsFlat is a simple chat application. Still in development.",
   },
   {
@@ -128,7 +129,7 @@ let projects = [
       { image: "./images/language_icons/vs.svg", title: "Visual Studio" },
       { image: "./images/language_icons/postgresql.svg", title: "PostgreSQL" },
     ],
-    source: "https://github.com/heuerleon/passman",
+    source: GITHUB_PROFILE + "passman",
     desc: "Simple password manager that stores your passwords. Also provides a simple password generator. Still in development.",
   },
 ];
@@ -193,7 +194,7 @@ const IndexPage = () => {
       let request = new XMLHttpRequest();
       request.open(
         "POST",
-        "https://discord.com/api/webhooks/963429237572923503/_z-rM1YtWwpNEasTPInC96a0ZlaQzl-UO1uWXg_XrTu_D-IY9NFgXdd0RhKUW9KOKl0A"
+        "https://discord.com/api/webhooks/1019718657967915038/7rYn4eZAg8Nl39s0S6qOGR9pJdE1lA6ozLjJiGHBRgjtzWlEzWeoEyA48FubQotv5vTR"
       );
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
@@ -357,7 +358,7 @@ const IndexPage = () => {
               </p>
               <div className="social-media-container">
                 <a
-                  href="https://github.com/heuerleon"
+                  href={GITHUB_PROFILE}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="github"
@@ -447,7 +448,7 @@ const IndexPage = () => {
                 If you're interested in what I do, feel free to take a look at
                 my{" "}
                 <a
-                  href="https://github.com/heuerleon?tab=repositories"
+                  href={GITHUB_PROFILE_ALT + "?tab=repositories"}
                   target="_blank"
                   rel="noreferrer"
                 >
