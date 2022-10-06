@@ -333,11 +333,11 @@ const IndexPage = () => {
                 <TypeIt
                   options={{
                     strings: [
-                      "Front end developer",
-                      "Linux server administrator",
+                      "App developer",
+                      "Linux enthusiast",
                       "Java & Kotlin developer",
-                      "Gaming enthusiast",
-                      "Computer hardware hobbyist",
+                      "Hobby gamer",
+                      "Hardware tinkerer",
                     ],
                     loop: true,
                     speed: 50,
