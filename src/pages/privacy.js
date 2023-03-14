@@ -111,13 +111,10 @@ const Privacy = () => {
               </p>{" "}
               <p>Wir setzen folgenden Hoster ein:</p>
               <p>
-                myLoc managed IT AG
-                <br />
-                +49 (0) 211 - 545 957 - 330
-                <br />
-                Am Gatherhof 44
-                <br />
-                40472 D&uuml;sseldorf
+                Hetzner Online GmbH<br />
+                Industriestr. 25<br />
+                91710 Gunzenhausen<br />
+                Deutschland
               </p>
               <h4>Auftragsverarbeitung</h4>{" "}
               <p>
@@ -161,9 +158,9 @@ const Privacy = () => {
               <p>
                 Leon Heuer
                 <br />
-                Am Brahmberg 25
+                Geverdesstraße 43
                 <br />
-                23611 Bad Schwartau
+                23554 Lübeck
                 <br />
                 Deutschland
               </p>

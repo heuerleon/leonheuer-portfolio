@@ -27,11 +27,10 @@ const Legal = () => {
 
               <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
               <p>
-                Leon Heuer
-                <br />
-                Am Brahmberg 25
-                <br />
-                23611 Bad Schwartau
+                Leon Heuer<br/>
+                Geverdesstraße 43<br/>
+                23554 Lübeck<br />
+                Deutschland
               </p>
 
               <h2>Kontakt</h2>
