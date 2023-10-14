@@ -1,2 +1,1 @@
-export const GITHUB_PROFILE_ALT = "https://github.com/heuerleon";
-export const GITHUB_PROFILE = GITHUB_PROFILE_ALT + "/";
+export const GITHUB_PROFILE = "https://github.com/heuerleon";

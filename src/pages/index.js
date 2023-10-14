@@ -4,7 +4,7 @@ import Layout from "../components/layout.js";
 import LanguageIcon from "../components/languageIcon.js";
 import { navigate } from "gatsby";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { GITHUB_PROFILE, GITHUB_PROFILE_ALT } from "../constants.js";
+import { GITHUB_PROFILE } from "../constants.js";
 
 const projectCats = [
   {
@@ -448,7 +448,7 @@ const IndexPage = () => {
                 If you're interested in what I do, feel free to take a look at
                 my{" "}
                 <a
-                  href={GITHUB_PROFILE_ALT + "?tab=repositories"}
+                  href={GITHUB_PROFILE + "/?tab=repositories"}
                   target="_blank"
                   rel="noreferrer"
                 >
