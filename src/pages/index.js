@@ -9,8 +9,8 @@ import { GITHUB_PROFILE } from "../constants.js";
 const projectCats = [
   {
     image: "./images/desktop.png",
-    h2: "Desktop Tools",
-    p: "Desktop applications primarily for Windows",
+    h2: "Backend Development",
+    p: "Backend services and cloud infrastructure",
   },
   {
     image: "./images/web.png",
@@ -354,7 +354,7 @@ const IndexPage = () => {
               <h1>Leon Heuer</h1>
               <p className="p-no-margin">
                 My name is Leon Heuer and I welcome you to my personal website.
-                I am a 18 years old software developer from Germany.
+                I am a 19 years old software developer from Germany.
               </p>
               <div className="social-media-container">
                 <a
@@ -412,12 +412,12 @@ const IndexPage = () => {
               <h1>About Me</h1>
               <p>
                 My name is Leon Heuer and I am a software developer at the age
-                of 18, programming for 8 years now. I am actively writing
-                desktop applications with C# and server-side mods for Minecraft
-                with Java and Kotlin, utilizing MongoDB as database management
-                system. I also have experience with the scripting languages
-                JavaScript and Python, as well as the frontend library React and
-                the framework Svelte.
+                of 19, with a passion for programming since I was only 10 years
+                old. I am actively writing desktop applications with C# and server-side
+                mods for Minecraft with Java and Kotlin, utilizing MongoDB as
+                database management system. I also have experience with the scripting
+                languages JavaScript and Python, as well as the frontend library
+                React and the framework Svelte.
               </p>
               <p>
                 At the moment, I am doing a dual study in applied computer
@@ -637,7 +637,7 @@ const IndexPage = () => {
               <div className="contact-option">
                 <i className="fab fa-discord double-line-icon"></i>
                 <div>
-                  <span className="bold">haku#7136</span>
+                  <span className="bold">@haku2</span>
                   <span className="light">Add me on discord</span>
                 </div>
               </div>
