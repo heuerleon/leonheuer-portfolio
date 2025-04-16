@@ -24,7 +24,7 @@
     "react-dom": "^19.1.0",
     "react-helmet": "^6.1.0",
     "react-parallax": "^3.5.2",
-    "sass": "^1.50.0",
+    "sass": "^1.86.3",
     "typeit-react": "^2.7.8"
   },
   "devDependencies": {
